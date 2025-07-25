@@ -1,0 +1,1 @@
+// FUnciones Simuladas en JS
