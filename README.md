@@ -1,4 +1,98 @@
 
+<div align="center">
+
+# Sistema Hospitalario 
+
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+
+**DANIEL ESTEBAN GUERRERO QUINTERO**  
+**AURA CAMILA PICO ARAQUE**
+
+&nbsp;  
+&nbsp;  
+ 
+**S1**  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+
+**PEDRO FELIPE GÓMEZ BONILLA**  
+
+&nbsp;  
+&nbsp;  
+&nbsp;  
+
+**CAMPUSLANDS**  
+**ARTEMIS**  
+**RUTA NODEJS**  
+**BUCARAMANGA**  
+**CAJASAN**
+**2025**
+<br>
+</div>
+<br>
+
+#
+
+<br>
+<br>
+
+## Tabla de Contenidos
+
+- [Introducción](#introducción)
+- [Caso de Estudio](#caso-de-estudio)
+- [Planificación](#planificación)
+- [Construcción del Modelo Conceptual](#construcción-del-modelo-conceptual)
+  - [Descripción](#descripción)
+  - [Gráfica](#gráfica)
+  - [Descripción Técnica](#descripción-técnica)
+- [Construcción del Modelo Lógico](#construcción-del-modelo-lógico)
+  - [Descripción](#descripción-1)
+  - [Gráfica](#gráfica-1)
+  - [Descripción Técnica](#descripción-técnica-1)
+- [Normalización del Modelo Lógico](#normalización-del-modelo-lógico)
+  - [Primera Forma Normal (1FN)](#primera-forma-normal-1fn)
+    - [Descripción](#descripción-2)
+    - [Gráfica](#gráfica-2)
+    - [Descripción Técnica](#descripción-técnica-2)
+  - [Segunda Forma Normal (2FN)](#segunda-forma-normal-2fn)
+    - [Descripción](#descripción-3)
+    - [Gráfica](#gráfica-3)
+    - [Descripción Técnica](#descripción-técnica-3)
+  - [Tercera Forma Normal (3FN)](#tercera-forma-normal-3fn)
+    - [Descripción](#descripción-4)
+    - [Gráfica](#gráfica-4)
+    - [Descripción Técnica](#descripción-técnica-4)
+- [Construcción del Modelo Físico](#construcción-del-modelo-físico)
+  - [Descripción](#descripción-5)
+  - [Código](#código)
+  - [Descripción Técnica](#descripción-técnica-5)
+- [Diagrama E-R](#diagrama-e-r)
+  - [Descripción](#descripción-6)
+  - [Gráfica](#gráfica-5)
+  - [Descripción Técnica](#descripción-técnica-6)
+- [Tablas](#tablas)
+  - [Descripción](#descripción-7)
+  - [Gráfica](#gráfica-6)
+  - [Descripción Técnica](#descripción-técnica-7)
+- [Relaciones entre Tablas](#relaciones-entre-tablas)
+  - [Descripción](#descripción-8)
+  - [Gráfica](#gráfica-7)
+  - [Descripción Técnica](#descripción-técnica-8)
+- [Inserción de Datos](#inserción-de-datos)
+  - [Descripción](#descripción-9)
+  - [Gráfica](#gráfica-8)
+  - [Descripción Técnica](#descripción-técnica-9)
+- [Referencias](#referencias)
+
+<br>
+<br>
+
+
 #  🏥 Sistema Hospitalario 
 
 El objetivo del proyecto es diseñar y desarrollar un sistema de base de datos en **MongoDB** que permita gestionar de manera eficiente todas las operaciones relacionadas con la administración de un **Sistema Hospitalario**. Dicho sistema incluirá la gestión de hospitales, pacientes, médicos, tratamientos, medicamentos, visitas médicas, historiales clínicos, áreas especializadas y personal administrativo.
@@ -18,9 +112,19 @@ En el sistema actual, gran parte de la información se encuentra almacenada en f
 Con el desarrollo de este sistema en MongoDB, se busca centralizar y estructurar toda la información relevante, permitiendo registrar visitas médicas, diagnósticos, tratamientos, disponibilidad de medicamentos, y la actividad del personal. Además, se podrá generar estadísticas, visualizar historiales clínicos completos y realizar consultas avanzadas que respalden las decisiones clínicas y administrativas. Este enfoque no solo mejora la eficiencia interna del hospital, sino que también garantiza una mejor calidad de atención al paciente.
 
 
+# Planificación
 
 
-## 📁 Estructura de la Base de Datos
+
+## Construcción del Modelo Conceptual
+
+
+### Descripción
+
+
+<br>
+
+## 📁 Estructura Modelo Conceptual
 
 ### 1. 🏥 `hospitales`
 
@@ -293,3 +397,319 @@ Analizar quienes tendran el `permisos: ["ver_pacientes", "editar_visitas"]`   pa
 
 ### (OPCIONAL)
 tener en cuenta implementar o no **Citas y turnos** (gestión de tiempos)  , **Inventario y facturación** (gestión operativa y financiera) , Consentimientos, Reportes, Alertas, Adjuntos, Encuestas  
+
+
+<br>
+
+
+# Gráfica
+
+```mermaid
+
+graph TD
+
+  
+
+%% Entidades principales
+
+Hospitales[Hospitales]
+
+Areas[AreasEspecializadas]
+
+Pacientes[Pacientes]
+
+Seguros[SegurosMedicos]
+
+Historial[HistorialesClinicos]
+
+Tratamientos[Tratamientos]
+
+Medicamentos[Medicamentos]
+
+Visitas[VisitasMedicas]
+
+  
+
+%% Personal dividido en roles
+
+Directores[DirectoresGenerales]
+
+Medicos[MedicosEspecialistas]
+
+Enfermeros[PersonalEnfermeria]
+
+Administrativos[PersonalAdministrativo]
+
+Aseo[PersonalAseoYServicios]
+
+  
+
+%% Atributos Hospitales
+
+idHospital((idHospital))
+
+nombreHospital((nombre))
+
+ubicacionHospital((ubicacion))
+
+telefonoHospital((telefono))
+
+Hospitales --> idHospital
+
+Hospitales --> nombreHospital
+
+Hospitales --> ubicacionHospital
+
+Hospitales --> telefonoHospital
+
+Hospitales -->|dirigido por| Directores
+
+Hospitales -->|tiene áreas| Areas
+
+Hospitales -->|tiene personal| Directores
+
+Hospitales --> Directores
+
+Hospitales --> Medicos
+
+Hospitales --> Enfermeros
+
+Hospitales --> Administrativos
+
+Hospitales --> Aseo
+
+Hospitales -->|atiende a| Pacientes
+
+  
+
+%% Areas Especializadas
+
+idArea((idArea))
+
+nombreArea((nombre))
+
+descArea((descripcion))
+
+Areas --> idArea
+
+Areas --> nombreArea
+
+Areas --> descArea
+
+Areas -->|pertenece a| Hospitales
+
+  
+
+%% Personal General
+
+Directores -->|trabaja en| Hospitales
+
+Medicos -->|trabaja en| Hospitales
+
+Enfermeros -->|trabaja en| Hospitales
+
+Administrativos -->|trabaja en| Hospitales
+
+Aseo -->|trabaja en| Hospitales
+
+  
+
+%% Pacientes
+
+idPaciente((idPaciente))
+
+nombrePaciente((nombre))
+
+direccion((direccion))
+
+telefono((telefono))
+
+correo((correo))
+
+historia((numeroHistoriaClinica))
+
+Pacientes --> idPaciente
+
+Pacientes --> nombrePaciente
+
+Pacientes --> direccion
+
+Pacientes --> telefono
+
+Pacientes --> correo
+
+Pacientes --> historia
+
+Pacientes -->|tiene seguro| Seguros
+
+Pacientes -->|tiene historial| Historial
+
+Pacientes -->|hospitalizado en| Hospitales
+
+  
+
+%% Seguros Médicos
+
+idSeguro((idSeguro))
+
+nombreSeguro((nombre))
+
+compania((compañia))
+
+tipoSeguro((tipo_seguro))
+
+Seguros --> idSeguro
+
+Seguros --> nombreSeguro
+
+Seguros --> compania
+
+Seguros --> tipoSeguro
+
+  
+
+%% Historial Clínico
+
+idHistorial((idHistorial))
+
+motivo((MotivoConsulta))
+
+diagnostico((diagnostico))
+
+resultados((resultados))
+
+fechaHistorial((fecha))
+
+Historial --> idHistorial
+
+Historial --> motivo
+
+Historial --> diagnostico
+
+Historial --> resultados
+
+Historial --> fechaHistorial
+
+Historial -->|de paciente| Pacientes
+
+Historial -->|requiere tratamiento| Tratamientos
+
+Historial -->|realizado por| Medicos
+
+Historial -->|realizado por| Enfermeros
+
+Historial -->|área médica| Areas
+
+Historial -->|hospital| Hospitales
+
+  
+
+%% Tratamientos
+
+idTratamiento((idTratamiento))
+
+nombreTratamiento((nombre))
+
+descripcionTratamiento((descripcion))
+
+plan((PlanTratamiento))
+
+duracion((duracion_estimada))
+
+costo((costo))
+
+Tratamientos --> idTratamiento
+
+Tratamientos --> nombreTratamiento
+
+Tratamientos --> descripcionTratamiento
+
+Tratamientos --> plan
+
+Tratamientos --> duracion
+
+Tratamientos --> costo
+
+Tratamientos -->|usa| Medicamentos
+
+Tratamientos -->|área| Areas
+
+Tratamientos -->|hospital| Hospitales
+
+  
+
+%% Medicamentos
+
+idMed((idMedicamento))
+
+nombreMed((nombre))
+
+fabricante((fabricante))
+
+tipoMed((tipo))
+
+dosis((dosis_estandar))
+
+frecuencia((Frecuencia))
+
+via((VíaAdministración))
+
+reacciones((ReaccionesAdversas))
+
+inventario((inventario))
+
+Medicamentos --> idMed
+
+Medicamentos --> nombreMed
+
+Medicamentos --> fabricante
+
+Medicamentos --> tipoMed
+
+Medicamentos --> dosis
+
+Medicamentos --> frecuencia
+
+Medicamentos --> via
+
+Medicamentos --> reacciones
+
+Medicamentos --> inventario
+
+Medicamentos -->|disponible en| Hospitales
+
+  
+
+%% Visitas Médicas
+
+idVisita((idVisita))
+
+tipoVisita((tipo_visita))
+
+observaciones((observaciones))
+
+fechaVisita((fecha))
+
+hora((hora))
+
+diagnosticoVisita((diagnostico))
+
+Visitas --> idVisita
+
+Visitas --> tipoVisita
+
+Visitas --> observaciones
+
+Visitas --> fechaVisita
+
+Visitas --> hora
+
+Visitas --> diagnosticoVisita
+
+Visitas -->|realizada por| Medicos
+
+Visitas -->|atendió a| Pacientes
+
+Visitas -->|hospital| Hospitales
+
+```
