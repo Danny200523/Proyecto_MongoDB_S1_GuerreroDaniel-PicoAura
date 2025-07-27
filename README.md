@@ -75,24 +75,24 @@
     - [8. 💊 `medicamentos`](#8--medicamentos)
 - [](#-8)
     - [9. 📆 `visitasMedicas`](#9--visitasmedicas)
-- [📈 Gráfica](#-gráfica)
+  - [📈 Gráfica](#-gráfica)
     - [🛠️ Descripción Técnica](#️-descripción-técnica)
   - [🏗 Construcción del Modelo Lógico](#-construcción-del-modelo-lógico)
     - [Descripción](#descripción-1)
-    - [📈 Gráfica](#-gráfica-1)
+  - [📈 Gráfica](#-gráfica-1)
     - [Descripción Técnica](#descripción-técnica)
   - [〽 Normalización del Modelo Lógico](#-normalización-del-modelo-lógico)
     - [1️⃣ Primera Forma Normal (1FN)](#1️⃣-primera-forma-normal-1fn)
       - [Descripción](#descripción-2)
-      - [📈 Gráfica](#-gráfica-2)
+  - [📈 Gráfica](#-gráfica-2)
       - [Descripción Técnica](#descripción-técnica-1)
     - [2️⃣ Segunda Forma Normal (2FN)](#2️⃣-segunda-forma-normal-2fn)
       - [Descripción](#descripción-3)
-      - [📈 Gráfica](#-gráfica-3)
+  - [📈 Gráfica](#-gráfica-3)
       - [Descripción Técnica](#descripción-técnica-2)
     - [3️⃣ Tercera Forma Normal (3FN)](#3️⃣-tercera-forma-normal-3fn)
       - [Descripción](#descripción-4)
-      - [📈 Gráfica](#-gráfica-4)
+  - [📈 Gráfica](#-gráfica-4)
       - [Descripción Técnica](#descripción-técnica-3)
   - [🏗 Construcción del Modelo Físico](#-construcción-del-modelo-físico)
       - [Descripción](#descripción-5)
@@ -100,19 +100,19 @@
       - [Descripción Técnica](#descripción-técnica-4)
   - [📊 Diagrama E-R](#-diagrama-e-r)
         - [Descripción](#descripción-6)
-        - [📈 Gráfica](#-gráfica-5)
+  - [📈 Gráfica](#-gráfica-5)
         - [Descripción Técnica](#descripción-técnica-5)
   - [📐 Tablas](#-tablas)
         - [Descripción](#descripción-7)
-      - [📈 Gráfica](#-gráfica-6)
+  - [📈 Gráfica](#-gráfica-6)
         - [Descripción Técnica](#descripción-técnica-6)
   - [🔗📋 Relaciones entre Tablas](#-relaciones-entre-tablas)
         - [Descripción](#descripción-8)
-        - [📈 Gráfica](#-gráfica-7)
+  - [📈 Gráfica](#-gráfica-7)
         - [Descripción Técnica](#descripción-técnica-7)
   - [📋 Inserción de Datos](#-inserción-de-datos)
         - [Descripción](#descripción-9)
-        - [📈 Gráfica](#-gráfica-8)
+  - [📈 Gráfica](#-gráfica-8)
         - [Descripción Técnica](#descripción-técnica-8)
 - [🔗 Referencias](#-referencias)
 - [](#-9)
@@ -127,10 +127,13 @@
 
 El objetivo del proyecto es diseñar y desarrollar un sistema de base de datos en **MongoDB** que permita gestionar de manera eficiente todas las operaciones relacionadas con la administración de un **Sistema Hospitalario**. Dicho sistema incluirá la gestión de hospitales, pacientes, médicos, tratamientos, medicamentos, visitas médicas, historiales clínicos, áreas especializadas y personal administrativo.
 
+<br>
 
 ## Introducción
 
 El sistema propuesto busca facilitar la gestión de hospitales, pacientes, personal médico y administrativo, áreas especializadas, tratamientos, medicamentos, visitas médicas e historiales clínicos. Además, se incluirán mecanismos de autenticación y control de acceso basados en roles para garantizar la seguridad y privacidad de la información. A través de consultas optimizadas y funciones re utilizables, se pretende brindar a los usuarios herramientas para la toma de decisiones, el control de inventario, el análisis de datos clínicos y la mejora continua en la atención médica.
+
+<br><br>
 
 
 ## 📚 Caso de Estudio
@@ -156,6 +159,7 @@ Tendremos en cuenta la gestión de las siguientes entidades que serán claves:
 
 Usaremos MongoDB ya que nos permite almacenar datos de manera flexible lo que es ideal para manejar documentos clínicos que pueden variar en estructuras según el paciente o especialidad , además de su capacidad de escalabilidad en sistemas hospitalarios que pueden crecer con el tiempo.
 
+<br><br>
 
 # 📄 Planificación
 
@@ -187,7 +191,7 @@ Las relaciones entre especialidades, tratamientos y medicamentos también fueron
 <br>
 
 <details>
-  <summary><strong> Estructura del seguimiento a hacer para nuestro modelo conceptual </strong></summary>
+  <summary><strong> 🧰 Estructura del seguimiento a hacer para nuestro modelo conceptual </strong></summary>
   
 ## 📁 Estructura Modelo Conceptual
 
@@ -460,11 +464,11 @@ Analizar quienes tendran el `permisos: ["ver_pacientes", "editar_visitas"]`   pa
 (OPCIONAL):
 tener en cuenta implementar o no **Citas y turnos** (gestión de tiempos)  , **Inventario y facturación** (gestión operativa y financiera) , Consentimientos, Reportes, Alertas, Adjuntos, Encuestas  
 
+<br><br>
 
 
 
-
-# 📈 Gráfica
+## 📈 Gráfica
 
 ```mermaid
 
@@ -789,17 +793,30 @@ Este modelo conceptual, respaldado por una gráfica ER coherente, establece las 
 
 
 
-<br>
+<br><br>
 
 ## 🏗 Construcción del Modelo Lógico
+
+Una vez definido el modelo conceptual, procedimos con la construcción del modelo lógico, transformando las entidades y relaciones previamente diseñadas en una estructura más formal, siguiendo la lógica de una base de datos NoSQL, específicamente adaptada a MongoDB. 
+
+El objetivo de esta fase fue garantizar que las relaciones, tipos de datos y asociaciones entre documentos fueran funcionales, eficientes y coherentes con el flujo operativo de un sistema hospitalario real. Este modelo actúa como puente entre la idea abstracta del sistema (conceptual) y su futura implementación física.
+
 
 <br>
 
 ### Descripción
 
+En el modelo lógico, estructuramos cada entidad como una colección en MongoDB, definiendo claramente sus campos, tipos de datos, referencias cruzadas y relaciones jerárquicas. Las entidades como hospitales, pacientes, personal, tratamientos, medicamentos, visitas médicas, historiales clínicos, seguros médicos y áreas especializadas fueron diseñadas como colecciones independientes, pero estrechamente conectadas entre sí a través de claves foráneas representadas por ObjectId. 
+
+El hospital es el núcleo relacional, al que se asocian otras entidades mediante referencias directas. Por ejemplo, los pacientes, medicamentos y tratamientos se relacionan directamente con el hospital asignado, lo que permite segmentar fácilmente la información por sede. El personal, aunque distribuido en varios roles, se representa lógicamente como una unidad con especialización interna, lo cual optimiza las relaciones con historiales, visitas y tratamientos. 
+
+También se definieron relaciones como la que existe entre un historial clínico y sus tratamientos, o entre una visita médica y el médico responsable, estableciendo un flujo informativo que permite reconstruir con precisión el recorrido clínico del paciente.
+
+
 <br>
 
-### 📈 Gráfica
+## 📈 Gráfica
+
 <br>
 
 ```mermaid
@@ -940,24 +957,44 @@ erDiagram
     }
 ```
 
+<br>
 
 ### Descripción Técnica
 
+Desde una perspectiva técnica, el modelo lógico se construyó respetando los principios de normalización aplicables al enfoque documental. Se utilizaron referencias (DBRef o manuales con ObjectId) para conectar entidades sin duplicar información, priorizando la eficiencia en la consulta y la integridad referencial. Cada colección cuenta con un identificador único y campos definidos con tipos de datos adecuados (cadenas, números, fechas, arreglos y referencias). 
 
-<br>
-<br>
+Las relaciones de uno a muchos y muchos a muchos se manejaron principalmente mediante arrays de referencias, como en el caso de los tratamientos que agrupan múltiples medicamentos, o los hospitales que contienen varias áreas especializadas. Además, se incorporaron campos pensados para ser indexados en el futuro, anticipando necesidades de rendimiento en consultas frecuentes. 
 
+Las estructuras anidadas se reservaron para datos que no requieren ser consultados de forma independiente, mientras que la información crítica o relacional se gestionó por referencia. Este modelo lógico, respaldado por la gráfica ER construida con notación formal, garantiza una base sólida para el modelo físico, con una estructura clara, relaciones explícitas y una lógica que facilita tanto el desarrollo como el mantenimiento del sistema hospitalario.
+
+
+<br><br>
 
 
 ## 〽 Normalización del Modelo Lógico
 
-  
+En esta etapa del diseño, aplicamos el proceso de normalización al modelo lógico con el fin de garantizar la integridad, consistencia y eficiencia del almacenamiento de los datos dentro del sistema hospitalario. La normalización permite eliminar redundancias innecesarias, estructurar mejor la información y facilitar su mantenimiento a largo plazo, especialmente en un entorno con múltiples relaciones como lo es un sistema clínico. 
+
+A pesar de trabajar con una base NoSQL como MongoDB, aplicamos los principios de normalización clásicos de bases de datos relacionales como una guía metodológica que refuerza la claridad y la organización interna del modelo lógico antes de traducirlo al modelo físico documental.
+
+
+<br>
 
 ### 1️⃣ Primera Forma Normal (1FN)
 
+La Primera Forma Normal busca eliminar los grupos repetitivos dentro de una misma entidad, asegurando que cada campo contenga solo valores atómicos y que no existan columnas que almacenen múltiples valores o estructuras anidadas que generen ambigüedad en la lectura o manipulación de los datos. Esta etapa es fundamental, ya que establece las bases para una estructura limpia, donde cada atributo representa una sola información por fila, evitando duplicidades internas y facilitando su posterior análisis o consulta.
+
+
+<br>
+
 #### Descripción
 
-#### 📈 Gráfica
+Durante la revisión del modelo lógico, identificamos ciertas entidades que inicialmente contenían arreglos o estructuras no atómicas, como listas de tratamientos dentro de un historial clínico, medicamentos dentro de un tratamiento, o múltiples áreas asignadas directamente en el hospital. En el proceso de adaptación a la 1FN, se tomó la decisión de separar estas agrupaciones en colecciones independientes o referenciadas, garantizando que cada documento representara una única instancia de información. Por ejemplo, en lugar de almacenar todos los medicamentos como un array dentro del tratamiento, se transformaron en documentos individuales relacionados mediante ObjectId. De esta manera, cada entidad mantiene una estructura clara y alineada con los principios de atomicidad de datos.
+
+
+<br>
+
+## 📈 Gráfica
 
 
 ```mermaid
@@ -1081,18 +1118,39 @@ erDiagram
         string descripcion
     }
 ```
+<br>
 
 #### Descripción Técnica
 
+Técnicamente, para cumplir con la Primera Forma Normal, nos aseguramos de que todos los atributos definidos en cada colección tuvieran un único valor por registro, evitando campos tipo array cuando estos representaban datos que podían crecer o cambiar dinámicamente. 
+
+Se eliminó cualquier tipo de estructura multivaluada que dificultara el acceso individual a los datos. En lugar de eso, implementamos relaciones referenciales donde era necesario, asegurando la unicidad de cada dato y la posibilidad de aplicar operaciones CRUD con mayor precisión. 
+
+Esta decisión también facilitó la implementación posterior de índices y filtros, ya que la información al estar desnormalizada por completo permite búsquedas más directas y eficientes. El paso por la 1FN nos permitió consolidar una base sólida sobre la cual aplicar las siguientes formas de normalización con mayor claridad.
 
 
+
+<br><br>
  
 ### 2️⃣ Segunda Forma Normal (2FN)
+
+La Segunda Forma Normal tiene como objetivo eliminar la dependencia parcial de atributos respecto a claves primarias compuestas. En otras palabras, busca que todos los campos de una tabla o colección dependan completamente de la clave primaria y no solo de una parte de ella. 
+
+Este principio es especialmente útil en estructuras donde una clave está compuesta por más de un campo, situación que puede provocar redundancia de datos o inconsistencias si no se maneja adecuadamente. Aunque MongoDB no utiliza claves compuestas de forma tradicional, seguimos este principio para asegurar la cohesión lógica de cada documento y evitar atributos que dependan parcialmente de identificadores múltiples.
 
 
 #### Descripción
 
-#### 📈 Gráfica
+Durante el análisis del modelo lógico, identificamos entidades donde existía dependencia parcial, especialmente en aquellos documentos donde se almacenaban atributos que estaban relacionados solo con una parte del contexto. 
+
+Por ejemplo, en las visitas médicas, se incluían datos del paciente y del médico, pero también información como la especialidad del médico o el motivo de consulta que, si bien estaban dentro del documento de visita, dependían únicamente del profesional de salud y no de la visita en sí. 
+
+En estos casos, se decidió trasladar estos atributos a sus entidades correspondientes (como personal o áreas) y mantener en la colección de visitas únicamente los campos que dependieran directamente del contexto completo de la visita. Este ajuste redujo la redundancia y facilitó una mejor trazabilidad de la información.
+
+
+<br><br>
+
+## 📈 Gráfica
 
 ```mermaid
 erDiagram
@@ -1228,18 +1286,235 @@ HOSPITALES ||--o{ AREAS_ESPECIALIZADAS : tiene
 
 #### Descripción Técnica
 
+Para garantizar el cumplimiento de la Segunda Forma Normal, revisamos las entidades que incluían referencias cruzadas o información contextual duplicada. Se reestructuraron los documentos eliminando campos que no dependían completamente del identificador del documento. 
+
+Por ejemplo, la información relacionada con la especialidad médica fue centralizada en la colección de áreasEspecializadas, y los datos del médico se relacionaron mediante referencias, evitando así repetir constantemente información que podía mantenerse de forma centralizada. 
+
+En términos de MongoDB, esto se tradujo en colecciones más limpias, enfocadas en un único propósito lógico, con estructuras referenciales claras y sin ambiguedades. Esta separación de responsabilidades dentro de los documentos mejora tanto la organización como la eficiencia al momento de realizar consultas o actualizaciones parciales en el sistema hospitalario.
 
 
+
+<br><br>
 
 ### 3️⃣ Tercera Forma Normal (3FN)
 
+Nos enfocamos en eliminar las dependencias transitivas dentro de una entidad, es decir, asegurar que todos los atributos no clave dependan exclusivamente de la clave primaria y no de otros atributos no clave. 
+
+Este principio busca evitar que la información se repita innecesariamente y mejorar la coherencia semántica del modelo. Aunque MongoDB no requiere este tipo de normalización de forma estricta debido a su naturaleza documental, aplicarla conceptualmente refuerza la integridad del diseño lógico previo a su implementación física.
+
+
 #### Descripción
 
-#### 📈 Gráfica
+Al analizar el modelo lógico con base en el nuevo diagrama ER, identificamos varios casos donde se presentaban dependencias transitivas. Por ejemplo, en la entidad personal, atributos como el nombre del rol o la especialidad médica dependían de idRol e idEspecialidad respectivamente, y no del identificador principal del documento (idPersonal). 
+
+Por esta razón, estos datos fueron trasladados a colecciones independientes: roles y especialidades_medicas, permitiendo así mantener una sola fuente de verdad para cada tipo de información. Otro caso se dio en facturas, donde detalles como el método de pago o el historial de transacciones eran más adecuados para una colección como pagos, lo cual permite gestionar los abonos de forma individual y reutilizar estructuras. 
+
+Esta reestructuración eliminó la dependencia de atributos entre sí y aseguró que todas las colecciones reflejaran únicamente relaciones directas con sus claves primarias.
+
+
+<br>
+
+## 📈 Gráfica
+```mermaid
+erDiagram
+
+HOSPITALES ||--o{ AREAS_ESPECIALIZADAS : tiene
+HOSPITALES ||--o{ PACIENTES : atiende
+HOSPITALES ||--o{ PERSONAL : emplea
+HOSPITALES ||--o{ MEDICAMENTOS : dispone
+HOSPITALES ||--o{ CITAS : programa
+
+AREAS_ESPECIALIZADAS ||--o{ TRATAMIENTOS : contiene
+AREAS_ESPECIALIZADAS ||--o{ HISTORIALES_CLINICOS : asociados
+
+PACIENTES ||--o{ HISTORIALES_CLINICOS : tiene
+PACIENTES ||--|| SEGUROS_MEDICOS : usa
+PACIENTES ||--o{ VISITAS_MEDICAS : recibe
+PACIENTES ||--o{ CITAS : agenda
+PACIENTES ||--o{ FACTURAS : genera
+
+HISTORIALES_CLINICOS ||--o{ TRATAMIENTOS_ASIGNADOS : requiere
+
+VISITAS_MEDICAS ||--|| PERSONAL : realizada_por
+
+PERSONAL ||--|| ROLES : tiene
+PERSONAL ||--o{ COLEGIATURAS : posee
+PERSONAL ||--|| ESPECIALIDADES_MEDICAS : especializado_en
+PERSONAL ||--o{ HORARIOS : trabaja_en
+
+TRATAMIENTOS ||--o{ TRATAMIENTOS_ASIGNADOS : aplica
+MEDICAMENTOS ||--o{ TRATAMIENTOS_ASIGNADOS : incluidos_en
+
+CITAS ||--|| PERSONAL : atendido_por
+
+FACTURAS ||--o{ PAGOS : tiene
+
+HOSPITALES {
+  string idHospital PK
+  string nombre
+  string ubicacion
+  number telefono
+}
+
+AREAS_ESPECIALIZADAS {
+  string idArea PK
+  string nombre
+  string descripcion
+  string idHospital FK
+}
+
+PACIENTES {
+  string idPaciente PK
+  string nombre
+  string direccion
+  string telefono
+  string correo
+  string numeroHistoriaClinica
+  string idSeguro FK
+  string idHospital FK
+}
+
+SEGUROS_MEDICOS {
+  string idSeguro PK
+  string nombre
+  string compania
+  string tipo_seguro
+}
+
+HISTORIALES_CLINICOS {
+  string idHistorial PK
+  string motivoConsulta
+  string diagnostico
+  string resultados
+  string fecha
+  string idPaciente FK
+  string idArea FK
+}
+
+TRATAMIENTOS {
+  string idTratamiento PK
+  string nombre
+  string descripcion
+  string planTratamiento
+  string duracionEstimada
+  float costo
+  string idArea FK
+}
+
+MEDICAMENTOS {
+  string idMedicamento PK
+  string nombre
+  string fabricante
+  string tipo
+  string dosisEstandar
+  string frecuencia
+  string viaAdministracion
+  string reaccionesAdversas
+  int inventario
+  string idHospital FK
+}
+
+TRATAMIENTOS_ASIGNADOS {
+  string idAsignacion PK
+  string idHistorial FK
+  string idTratamiento FK
+  string idMedicamento FK
+  string fechaAplicacion
+  string observaciones
+  string idPersonalMedico FK
+  string idPersonalEnfermero FK
+}
+
+VISITAS_MEDICAS {
+  string idVisita PK
+  string tipoVisita
+  string observaciones
+  string fecha
+  string hora
+  string diagnostico
+  string idPaciente FK
+  string idMedico FK
+}
+
+PERSONAL {
+  string idPersonal PK
+  string nombre
+  string telefono
+  string correo
+  float salario
+  string idHospital FK
+  string idRol FK
+  string idEspecialidad FK
+}
+
+COLEGIATURAS {
+  string idColegiatura PK
+  string numero
+  string idPersonal FK
+}
+
+ESPECIALIDADES_MEDICAS {
+  string idEspecialidad PK
+  string nombreEspecialidad
+}
+
+ROLES {
+  string idRol PK
+  string nombreRol
+  string descripcion
+}
+
+HORARIOS {
+  string idHorario PK
+  string dia
+  string horaEntrada
+  string horaSalida
+  string idPersonal FK
+}
+
+CITAS {
+  string idCita PK
+  string fecha
+  string hora
+  string motivo
+  string estado
+  string idPaciente FK
+  string idPersonal FK
+  string idHospital FK
+}
+
+FACTURAS {
+  string idFactura PK
+  string fechaEmision
+  float total
+  string metodoPago
+  string idPaciente FK
+  string idHospital FK
+}
+
+PAGOS {
+  string idPago PK
+  string fechaPago
+  float monto
+  string metodo
+  string idFactura FK
+}
+```
+
+
+<br>
 
 #### Descripción Técnica
 
+Para aplicar correctamente la Tercera Forma Normal en este modelo, fragmentamos entidades que contenían campos con dependencias indirectas, y los trasladamos a colecciones especializadas con sus respectivos ObjectId.
 
+Así, roles, especialidades_medicas, pagos, colegiaturas y seguros_medicos se convirtieron en entidades propias, cada una relacionada por referencia con las entidades principales (personal, pacientes, facturas). 
+
+Esta separación lógica permite mantener una alta cohesión dentro de cada colección y evita la repetición de atributos como nombre del rol, tipo de seguro o nombre de la especialidad, que podrían estar presentes en múltiples documentos si no se normalizan. Desde la perspectiva técnica, este enfoque mejora la eficiencia del almacenamiento, reduce el riesgo de inconsistencias en actualizaciones y permite escalabilidad en el control de catálogos, roles y transacciones.
+
+
+
+<br><br>
   
 
 ## 🏗 Construcción del Modelo Físico
@@ -1247,49 +1522,119 @@ HOSPITALES ||--o{ AREAS_ESPECIALIZADAS : tiene
 
 #### Descripción
 
+
+
+<br>
+
 #### 📝**Código**
+
+
+
+<br>
 
 #### Descripción Técnica
 
- 
+
+
+ <br><br>
 
 ## 📊 Diagrama E-R
 
+
+
+<br>
   
 ##### Descripción
 
-##### 📈 Gráfica
+
+
+<br>
+
+## 📈 Gráfica
+
+
+
+<br>
 
 ##### Descripción Técnica
 
 
 
+
+<br><br>
 
 ## 📐 Tablas
 
+
+
+<br>
+
 ##### Descripción
 
-#### 📈 Gráfica
+
+
+<br>
+
+## 📈 Gráfica
+
+
+
+<br>
 
 ##### Descripción Técnica
 
+
+
+<br><br>
 
 ## 🔗📋 Relaciones entre Tablas
 
+
+
+<br>
+
 ##### Descripción
 
-##### 📈 Gráfica
+
+
+<br>
+
+## 📈 Gráfica
+
+
+
+<br>
 
 ##### Descripción Técnica
 
+
+
+<br><br>
 
 ## 📋 Inserción de Datos
 
+
+
+<br>
+
 ##### Descripción
 
-##### 📈 Gráfica
+
+
+<br>
+
+## 📈 Gráfica
+
+
+
+<br>
 
 ##### Descripción Técnica
+
+
+
+
+<br><br>
 
 
 # 🔗 Referencias
@@ -1311,9 +1656,11 @@ HOSPITALES ||--o{ AREAS_ESPECIALIZADAS : tiene
 ## 🛠 Herramientas de Desarrollo
 
 
-<p align="left">
-  <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDVhaGg5bWczaWI2eTNwcHI0dGRmZ3NkdzB5MDljemc3eXhwcnZociZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/tAjb5pyCEBhEb8jWxC/giphy.gif" alt="Funny Coding Gif" width="150"/>
 
-<h3 align="left"> MongoDB ~ </h3> 
+<p  align="center">
+
+<img  src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDVhaGg5bWczaWI2eTNwcHI0dGRmZ3NkdzB5MDljemc3eXhwcnZociZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/tAjb5pyCEBhEb8jWxC/giphy.gif"  alt="Funny Coding Gif"  width="150"/>
+
+<h3 align="center"> MongoDB ~ </h3>
+
 </p>
-
