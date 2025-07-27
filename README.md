@@ -43,51 +43,82 @@
 
 ## Tabla de Contenidos
 
-- [Introducción](#introducción)
-- [Caso de Estudio](#caso-de-estudio)
+- [Sistema Hospitalario](#sistema-hospitalario)
+- [](#)
+  - [Tabla de Contenidos](#tabla-de-contenidos)
+- [🏥 Sistema Hospitalario](#-sistema-hospitalario)
+  - [Introducción](#introducción)
+  - [Caso de Estudio](#caso-de-estudio)
 - [Planificación](#planificación)
-- [Construcción del Modelo Conceptual](#construcción-del-modelo-conceptual)
-  - [Descripción](#descripción)
-  - [Gráfica](#gráfica)
-  - [Descripción Técnica](#descripción-técnica)
-- [Construcción del Modelo Lógico](#construcción-del-modelo-lógico)
-  - [Descripción](#descripción-1)
-  - [Gráfica](#gráfica-1)
-  - [Descripción Técnica](#descripción-técnica-1)
-- [Normalización del Modelo Lógico](#normalización-del-modelo-lógico)
-  - [Primera Forma Normal (1FN)](#primera-forma-normal-1fn)
-    - [Descripción](#descripción-2)
-    - [Gráfica](#gráfica-2)
-    - [Descripción Técnica](#descripción-técnica-2)
-  - [Segunda Forma Normal (2FN)](#segunda-forma-normal-2fn)
-    - [Descripción](#descripción-3)
-    - [Gráfica](#gráfica-3)
-    - [Descripción Técnica](#descripción-técnica-3)
-  - [Tercera Forma Normal (3FN)](#tercera-forma-normal-3fn)
-    - [Descripción](#descripción-4)
-    - [Gráfica](#gráfica-4)
-    - [Descripción Técnica](#descripción-técnica-4)
-- [Construcción del Modelo Físico](#construcción-del-modelo-físico)
-  - [Descripción](#descripción-5)
-  - [Código](#código)
-  - [Descripción Técnica](#descripción-técnica-5)
-- [Diagrama E-R](#diagrama-e-r)
-  - [Descripción](#descripción-6)
-  - [Gráfica](#gráfica-5)
-  - [Descripción Técnica](#descripción-técnica-6)
-- [Tablas](#tablas)
-  - [Descripción](#descripción-7)
-  - [Gráfica](#gráfica-6)
-  - [Descripción Técnica](#descripción-técnica-7)
-- [Relaciones entre Tablas](#relaciones-entre-tablas)
-  - [Descripción](#descripción-8)
-  - [Gráfica](#gráfica-7)
-  - [Descripción Técnica](#descripción-técnica-8)
-- [Inserción de Datos](#inserción-de-datos)
-  - [Descripción](#descripción-9)
-  - [Gráfica](#gráfica-8)
-  - [Descripción Técnica](#descripción-técnica-9)
+  - [Construcción del Modelo Conceptual](#construcción-del-modelo-conceptual)
+    - [Descripción](#descripción)
+  - [📁 Estructura Modelo Conceptual](#-estructura-modelo-conceptual)
+    - [1. 🏥 `hospitales`](#1--hospitales)
+- [](#-1)
+    - [2. 🧠 `areasEspecializadas`](#2--areasespecializadas)
+- [](#-2)
+    - [3. 🧠 `personal` (OPCIONAL )](#3--personal-opcional-)
+      - [3.1 🏛️ `directoresGenerales`](#31-️-directoresgenerales)
+      - [3.2 🩺 `medicosEspecialistas`](#32--medicosespecialistas)
+      - [3.3 🩹 `personalEnfermeria`](#33--personalenfermeria)
+      - [3.4.1 💼 `personalAdministrativo`](#341--personaladministrativo)
+      - [3.5 🧹 `personalAseoYServicios`](#35--personalaseoyservicios)
+- [](#-3)
+    - [4. 🧍 `pacientes`](#4--pacientes)
+- [](#-4)
+    - [5. 💳 `segurosMedicos`](#5--segurosmedicos)
+- [](#-5)
+    - [6. 📋 `historialesClinicos`](#6--historialesclinicos)
+- [](#-6)
+    - [7. 💉 `tratamientos`](#7--tratamientos)
+- [](#-7)
+    - [8. 💊 `medicamentos`](#8--medicamentos)
+- [](#-8)
+    - [9. 📆 `visitasMedicas`](#9--visitasmedicas)
+- [](#-9)
+    - [(OPCIONAL)](#opcional)
+- [Gráfica](#gráfica)
+  - [Construcción del Modelo Lógico](#construcción-del-modelo-lógico)
+    - [Descripción](#descripción-1)
+    - [Gráfica](#gráfica-1)
+    - [Descripción Técnica](#descripción-técnica)
+  - [Normalización del Modelo Lógico](#normalización-del-modelo-lógico)
+    - [Primera Forma Normal (1FN)](#primera-forma-normal-1fn)
+      - [Descripción](#descripción-2)
+      - [Gráfica](#gráfica-2)
+      - [Descripción Técnica](#descripción-técnica-1)
+    - [Segunda Forma Normal (2FN)](#segunda-forma-normal-2fn)
+      - [Descripción](#descripción-3)
+      - [Gráfica](#gráfica-3)
+      - [Descripción Técnica](#descripción-técnica-2)
+    - [Tercera Forma Normal (3FN)](#tercera-forma-normal-3fn)
+      - [Descripción](#descripción-4)
+      - [Gráfica](#gráfica-4)
+      - [Descripción Técnica](#descripción-técnica-3)
+  - [Construcción del Modelo Físico](#construcción-del-modelo-físico)
+      - [Descripción](#descripción-5)
+      - [**Código**](#código)
+      - [Descripción Técnica](#descripción-técnica-4)
+  - [Diagrama E-R](#diagrama-e-r)
+        - [Descripción](#descripción-6)
+        - [Gráfica](#gráfica-5)
+        - [Descripción Técnica](#descripción-técnica-5)
+  - [Tablas](#tablas)
+        - [Descripción](#descripción-7)
+      - [Gráfica](#gráfica-6)
+        - [Descripción Técnica](#descripción-técnica-6)
+  - [Relaciones entre Tablas](#relaciones-entre-tablas)
+        - [Descripción](#descripción-8)
+        - [Gráfica](#gráfica-7)
+        - [Descripción Técnica](#descripción-técnica-7)
+  - [Inserción de Datos](#inserción-de-datos)
+        - [Descripción](#descripción-9)
+        - [Gráfica](#gráfica-8)
+        - [Descripción Técnica](#descripción-técnica-8)
 - [Referencias](#referencias)
+- [](#-10)
+  - [Desarrolladores](#desarrolladores)
+  - [Herramientas de Desarrollo](#herramientas-de-desarrollo)
 
 <br>
 <br>
@@ -105,16 +136,35 @@ El sistema propuesto busca facilitar la gestión de hospitales, pacientes, perso
 
 ## Caso de Estudio
 
-Cada hospital cuenta con diferentes especialidades médicas y un equipo multidisciplinario conformado por médicos especialistas, enfermeros, personal administrativo y de mantenimiento. La administración general está a cargo de un director que supervisa tanto la parte médica como la operativa.
+- [Recurso Base](https://drive.google.com/file/d/1MqFQ7nI6pOwNBHwOSZjvmbwOalD-9zoG/view)
 
-En el sistema actual, gran parte de la información se encuentra almacenada en formatos físicos o dispersa en múltiples archivos digitales sin una estructura unificada, lo que dificulta la gestión efectiva de los recursos, el seguimiento de pacientes y la elaboración de reportes médicos y administrativos.
+En el entorno hospitalario actual, la gestión eficiente de la información médica es fundamental para garantizar la atención oportuna y precisa de los pacientes, muchos hospitales aún operan con registros físicos de sistemas fragmentados lo que genera demoras, la duplicación de datos y errores ya sean humanos.
+    
+Los hospital no cuenta con un sistema centralizado que permita almacenar consultar y actualizar la información de sus pacientes médicos tratamientos y personas administrativa de forma eficiente esto ha provocado dificultades en la gestión de historiales clínicos control de visitas médicas y distribución de medicamentos
+    
+Nuestra propuesta es un diseño e implementación de una base de datos No SQL , utilizando MongoDB , este nos permitirá gestionar de forma integral y escalable todos los elementos relacionados con las operaciones hospitalarias
+    
+Tendremos en cuenta la gestión de las siguientes entidades que serán claves:
 
-Con el desarrollo de este sistema en MongoDB, se busca centralizar y estructurar toda la información relevante, permitiendo registrar visitas médicas, diagnósticos, tratamientos, disponibilidad de medicamentos, y la actividad del personal. Además, se podrá generar estadísticas, visualizar historiales clínicos completos y realizar consultas avanzadas que respalden las decisiones clínicas y administrativas. Este enfoque no solo mejora la eficiencia interna del hospital, sino que también garantiza una mejor calidad de atención al paciente.
+- **Hospitales**: Información general de cada sede.
+- **Pacientes**: Datos personales, hospital asignado, historial clínico, visitas médicas.
+- **Médicos**: Especialidades, hospital asignado, pacientes atendidos.
+- **Visitas Médicas**: Registro de consultas, fecha, diagnóstico y médico tratante.
+- **Tratamientos y Medicamentos**: Información de los tratamientos indicados y medicamentos administrados.
+- **Áreas Especializadas**: Departamento o servicio específico del hospital.
+- **Personal Administrativo**: Encargados de la gestión hospitalaria.
+- **Historiales Clínicos**: Evolución médica del paciente, vinculada a visitas y tratamientos.
+
+Usaremos MongoDB ya que nos permite almacenar datos de manera flexible lo que es ideal para manejar documentos clínicos que pueden variar en estructuras según el paciente o especialidad , además de su capacidad de escalabilidad en sistemas hospitalarios que pueden crecer con el tiempo.
 
 
 # Planificación
 
+La planificación del proyecto se ha estructurado en **etapas progresivas**, con base en el análisis de requerimientos del sistema hospitalario, su estructura funcional y los datos que se deben gestionar. El objetivo es lograr una base de datos No SQL eficiente, escalable y coherente con el funcionamiento real de una institución médica.
 
+Siguiendo la construcción del sistema hospitalario en MongoDB requiere una planificación estructurada que permita abordar cada componente de manera lógica, modular y escalable. Esta planificación se diseñó con base en las necesidades específicas de un entorno clínico real, considerando tanto la complejidad de la información como la dinámica entre las áreas, el personal y los pacientes.
+
+Para finalizar la planificación del sistema hospitalario la basamos en etapas progresivas en la cual abordamos cada componente de manera lógica, modular y escalable. Diseñado a partir de una base de las necesidades específicas de un entorno clínico real , considerando tanto la complejidad de la información como la dinámica que tiene cada área, el personal y sus pacientes.
 
 ## Construcción del Modelo Conceptual
 
@@ -124,6 +174,9 @@ Con el desarrollo de este sistema en MongoDB, se busca centralizar y estructurar
 
 <br>
 
+<details>
+  <summary><strong> Estructura del seguimiento a hacer para nuestro modelo conceptual </strong></summary>
+  
 ## 📁 Estructura Modelo Conceptual
 
 ### 1. 🏥 `hospitales`
@@ -387,13 +440,14 @@ Registro de las atenciones médicas.
 
 - `hospital_asignado`:  Ref → hospitales *(Requerido)*  
 
+</details>
+
 
 
  #
 Analizar quienes tendran el `permisos: ["ver_pacientes", "editar_visitas"]`   para modelar los roles y el acceso de un array de permisos
 
-
-# 
+--- 
 
 ### (OPCIONAL)
 tener en cuenta implementar o no **Citas y turnos** (gestión de tiempos)  , **Inventario y facturación** (gestión operativa y financiera) , Consentimientos, Reportes, Alertas, Adjuntos, Encuestas  
@@ -713,3 +767,534 @@ Visitas -->|atendió a| Pacientes
 Visitas -->|hospital| Hospitales
 
 ```
+
+
+
+<br>
+
+## Construcción del Modelo Lógico
+
+<br>
+
+### Descripción
+
+<br>
+
+### Gráfica
+<br>
+
+```mermaid
+erDiagram
+
+    HOSPITALES ||--o{ AREAS_ESPECIALIZADAS : tiene
+    HOSPITALES ||--o{ PACIENTES : atiende
+    HOSPITALES ||--o{ MEDICOS : emplea
+    HOSPITALES ||--o{ DIRECTORES : dirigido_por
+    HOSPITALES ||--o{ ENFERMEROS : emplea
+    HOSPITALES ||--o{ ADMINISTRATIVOS : emplea
+    HOSPITALES ||--o{ ASEO : emplea
+    HOSPITALES ||--o{ MEDICAMENTOS : dispone
+    HOSPITALES ||--o{ TRATAMIENTOS : aplica
+
+    AREAS_ESPECIALIZADAS ||--o{ TRATAMIENTOS : contiene
+    AREAS_ESPECIALIZADAS ||--o{ HISTORIALES_CLINICOS : asociados
+
+    PACIENTES ||--o{ HISTORIALES_CLINICOS : tiene
+    PACIENTES ||--|| SEGUROS_MEDICOS : usa
+    PACIENTES ||--o{ VISITAS_MEDICAS : recibe
+
+    HISTORIALES_CLINICOS ||--o{ TRATAMIENTOS : requiere
+    HISTORIALES_CLINICOS ||--|| MEDICOS : realizado_por
+    HISTORIALES_CLINICOS ||--|| ENFERMEROS : asistido_por
+
+    TRATAMIENTOS ||--o{ MEDICAMENTOS : usa
+
+    VISITAS_MEDICAS ||--|| MEDICOS : realizada_por
+
+    HOSPITALES {
+        string idHospital PK
+        string nombre
+        string ubicacion
+        string telefono
+    }
+
+    AREAS_ESPECIALIZADAS {
+        string idArea PK
+        string nombre
+        string descripcion
+    }
+
+    PACIENTES {
+        string idPaciente PK
+        string nombre
+        string direccion
+        string telefono
+        string correo
+        string numeroHistoriaClinica
+    }
+
+    SEGUROS_MEDICOS {
+        string idSeguro PK
+        string nombre
+        string compania
+        string tipo_seguro
+    }
+
+    HISTORIALES_CLINICOS {
+        string idHistorial PK
+        string MotivoConsulta
+        string diagnostico
+        string resultados
+        string fecha
+    }
+
+    TRATAMIENTOS {
+        string idTratamiento PK
+        string nombre
+        string descripcion
+        string PlanTratamiento
+        string duracion_estimada
+        float costo
+    }
+
+    MEDICAMENTOS {
+        string idMedicamento PK
+        string nombre
+        string fabricante
+        string tipo
+        string dosis_estandar
+        string Frecuencia
+        string VíaAdministración
+        string ReaccionesAdversas
+        int inventario
+    }
+
+    VISITAS_MEDICAS {
+        string idVisita PK
+        string tipo_visita
+        string observaciones
+        string fecha
+        string hora
+        string diagnostico
+    }
+
+    DIRECTORES {
+        string idPersonal PK
+        string nombre
+        string telefono
+        string correo
+        float salario
+    }
+
+    MEDICOS {
+        string idPersonal PK
+        string nombre
+        string especialidad
+        string numeroColegiatura
+        string telefono
+        string correo
+        float salario
+    }
+
+    ENFERMEROS {
+        string idPersonal PK
+        string nombre
+        string telefono
+        string correo
+        float salario
+    }
+
+    ADMINISTRATIVOS {
+        string idPersonal PK
+        string nombre
+        string telefono
+        string correo
+        float salario
+    }
+
+    ASEO {
+        string idPersonal PK
+        string nombre
+        string telefono
+        string correo
+        float salario
+    }
+```
+
+
+### Descripción Técnica
+
+
+<br>
+<br>
+
+
+
+## Normalización del Modelo Lógico
+
+  
+
+### Primera Forma Normal (1FN)
+
+#### Descripción
+
+#### Gráfica
+
+
+```mermaid
+erDiagram
+    HOSPITALES ||--o{ AREAS_ESPECIALIZADAS : tiene
+    HOSPITALES ||--o{ PACIENTES : atiende
+    HOSPITALES ||--o{ PERSONAL : emplea
+    HOSPITALES ||--o{ MEDICAMENTOS : dispone
+    HOSPITALES ||--o{ TRATAMIENTOS : aplica
+
+    AREAS_ESPECIALIZADAS ||--o{ TRATAMIENTOS : contiene
+    AREAS_ESPECIALIZADAS ||--o{ HISTORIALES_CLINICOS : asociados
+
+    PACIENTES ||--o{ HISTORIALES_CLINICOS : tiene
+    PACIENTES ||--|| SEGUROS_MEDICOS : usa
+    PACIENTES ||--o{ VISITAS_MEDICAS : recibe
+
+    HISTORIALES_CLINICOS ||--o{ TRATAMIENTOS : requiere
+    HISTORIALES_CLINICOS ||--|| PERSONAL : realizado_por
+
+    TRATAMIENTOS ||--o{ MEDICAMENTOS : usa
+
+    VISITAS_MEDICAS ||--|| PERSONAL : realizada_por
+
+    PERSONAL ||--|| ROLES : tiene
+
+    HOSPITALES {
+        string idHospital PK
+        string nombre
+        string ubicacion
+        number telefono
+    }
+
+    AREAS_ESPECIALIZADAS {
+        string idArea PK
+        string nombre
+        string descripcion
+        string idHospital FK
+    }
+
+    PACIENTES {
+        string idPaciente PK
+        string nombre
+        string direccion
+        string telefono
+        string correo
+        string numeroHistoriaClinica
+        string idSeguro FK
+        string idHospital FK
+    }
+
+    SEGUROS_MEDICOS {
+        string idSeguro PK
+        string nombre
+        string compania
+        string tipo_seguro
+    }
+
+    HISTORIALES_CLINICOS {
+        string idHistorial PK
+        string motivoConsulta
+        string diagnostico
+        string resultados
+        string fecha
+        string idPaciente FK
+        string idArea FK
+        string idMedico FK
+        string idEnfermero FK
+    }
+
+    TRATAMIENTOS {
+        string idTratamiento PK
+        string nombre
+        string descripcion
+        string planTratamiento
+        string duracionEstimada
+        float costo
+        string idArea FK
+        string idHospital FK
+    }
+
+    MEDICAMENTOS {
+        string idMedicamento PK
+        string nombre
+        string fabricante
+        string tipo
+        string dosisEstandar
+        string frecuencia
+        string viaAdministracion
+        string reaccionesAdversas
+        int inventario
+        string idHospital FK
+    }
+
+    VISITAS_MEDICAS {
+        string idVisita PK
+        string tipoVisita
+        string observaciones
+        string fecha
+        string hora
+        string diagnostico
+        string idPaciente FK
+        string idMedico FK
+    }
+
+    PERSONAL {
+        string idPersonal PK
+        string nombre
+        string telefono
+        string correo
+        float salario
+        string idHospital FK
+        string idRol FK
+        string especialidad
+        string numeroColegiatura
+    }
+
+    ROLES {
+        string idRol PK
+        string nombreRol
+        string descripcion
+    }
+```
+
+#### Descripción Técnica
+
+
+
+ 
+### Segunda Forma Normal (2FN)
+
+
+#### Descripción
+
+#### Gráfica
+
+```mermaid
+erDiagram
+HOSPITALES ||--o{ AREAS_ESPECIALIZADAS : tiene
+    HOSPITALES ||--o{ PACIENTES : atiende
+    HOSPITALES ||--o{ PERSONAL : emplea
+    HOSPITALES ||--o{ MEDICAMENTOS : dispone
+
+    AREAS_ESPECIALIZADAS ||--o{ TRATAMIENTOS : contiene
+    AREAS_ESPECIALIZADAS ||--o{ HISTORIALES_CLINICOS : asociados
+
+    PACIENTES ||--o{ HISTORIALES_CLINICOS : tiene
+    PACIENTES ||--|| SEGUROS_MEDICOS : usa
+    PACIENTES ||--o{ VISITAS_MEDICAS : recibe
+
+    HISTORIALES_CLINICOS ||--o{ TRATAMIENTOS_ASIGNADOS : requiere
+
+    VISITAS_MEDICAS ||--|| PERSONAL : realizada_por
+
+    PERSONAL ||--|| ROLES : tiene
+
+    TRATAMIENTOS ||--o{ TRATAMIENTOS_ASIGNADOS : aplica
+    MEDICAMENTOS ||--o{ TRATAMIENTOS_ASIGNADOS : incluidos_en
+
+    HOSPITALES {
+        string idHospital PK
+        string nombre
+        string ubicacion
+        number telefono
+    }
+
+    AREAS_ESPECIALIZADAS {
+        string idArea PK
+        string nombre
+        string descripcion
+        string idHospital FK
+    }
+
+    PACIENTES {
+        string idPaciente PK
+        string nombre
+        string direccion
+        string telefono
+        string correo
+        string numeroHistoriaClinica
+        string idSeguro FK
+        string idHospital FK
+    }
+
+    SEGUROS_MEDICOS {
+        string idSeguro PK
+        string nombre
+        string compania
+        string tipo_seguro
+    }
+
+    HISTORIALES_CLINICOS {
+        string idHistorial PK
+        string motivoConsulta
+        string diagnostico
+        string resultados
+        string fecha
+        string idPaciente FK
+        string idArea FK
+    }
+
+    TRATAMIENTOS {
+        string idTratamiento PK
+        string nombre
+        string descripcion
+        string planTratamiento
+        string duracionEstimada
+        float costo
+        string idArea FK
+    }
+
+    MEDICAMENTOS {
+        string idMedicamento PK
+        string nombre
+        string fabricante
+        string tipo
+        string dosisEstandar
+        string frecuencia
+        string viaAdministracion
+        string reaccionesAdversas
+        int inventario
+        string idHospital FK
+    }
+
+    TRATAMIENTOS_ASIGNADOS {
+        string idAsignacion PK
+        string idHistorial FK
+        string idTratamiento FK
+        string idMedicamento FK
+        string fechaAplicacion
+        string observaciones
+        string idPersonalMedico FK
+        string idPersonalEnfermero FK
+    }
+
+    VISITAS_MEDICAS {
+        string idVisita PK
+        string tipoVisita
+        string observaciones
+        string fecha
+        string hora
+        string diagnostico
+        string idPaciente FK
+        string idMedico FK
+    }
+
+    PERSONAL {
+        string idPersonal PK
+        string nombre
+        string telefono
+        string correo
+        float salario
+        string idHospital FK
+        string idRol FK
+        string especialidad
+        string numeroColegiatura
+    }
+
+    ROLES {
+        string idRol PK
+        string nombreRol
+        string descripcion
+    }
+
+```
+
+
+
+#### Descripción Técnica
+
+
+
+
+### Tercera Forma Normal (3FN)
+
+#### Descripción
+
+#### Gráfica
+
+#### Descripción Técnica
+
+
+  
+
+## Construcción del Modelo Físico
+
+
+#### Descripción
+
+#### **Código**
+
+#### Descripción Técnica
+
+ 
+
+## Diagrama E-R
+
+  
+##### Descripción
+
+##### Gráfica
+
+##### Descripción Técnica
+
+
+
+
+## Tablas
+
+##### Descripción
+
+#### Gráfica
+
+##### Descripción Técnica
+
+
+## Relaciones entre Tablas
+
+##### Descripción
+
+##### Gráfica
+
+##### Descripción Técnica
+
+
+## Inserción de Datos
+
+##### Descripción
+
+##### Gráfica
+
+##### Descripción Técnica
+
+
+# Referencias
+
+- [ Sistema de Información Hospitalaria](https://www.sciencedirect.com/topics/computer-science/hospital-information-system)
+
+- [sistema de gestión hospitalaria](https://www.aalpha.net/blog/how-to-build-a-hospital-management-system/)
+
+#
+<br>
+
+## Desarrolladores
+
+- [@Danny200523](https://github.com/Danny200523)
+- [@AuraCamilaPicoAraque](https://github.com/AuraCamilaPicoAraque)
+
+<br>
+
+## Herramientas de Desarrollo
+
+
+<p align="left">
+  <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDVhaGg5bWczaWI2eTNwcHI0dGRmZ3NkdzB5MDljemc3eXhwcnZociZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/tAjb5pyCEBhEb8jWxC/giphy.gif" alt="Funny Coding Gif" width="150"/>
+
+<h3 align="left"> MongoDB ~ </h3> 
+</p>
+
