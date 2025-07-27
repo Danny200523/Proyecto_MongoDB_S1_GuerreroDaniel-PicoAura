@@ -48,9 +48,9 @@
   - [Tabla de Contenidos](#tabla-de-contenidos)
 - [🏥 Sistema Hospitalario](#-sistema-hospitalario)
   - [Introducción](#introducción)
-  - [Caso de Estudio](#caso-de-estudio)
-- [Planificación](#planificación)
-  - [Construcción del Modelo Conceptual](#construcción-del-modelo-conceptual)
+  - [📚 Caso de Estudio](#-caso-de-estudio)
+- [📄 Planificación](#-planificación)
+  - [🏗 Construcción del Modelo Conceptual](#-construcción-del-modelo-conceptual)
     - [Descripción](#descripción)
   - [📁 Estructura Modelo Conceptual](#-estructura-modelo-conceptual)
     - [1. 🏥 `hospitales`](#1--hospitales)
@@ -75,50 +75,49 @@
     - [8. 💊 `medicamentos`](#8--medicamentos)
 - [](#-8)
     - [9. 📆 `visitasMedicas`](#9--visitasmedicas)
-- [](#-9)
-    - [(OPCIONAL)](#opcional)
-- [Gráfica](#gráfica)
-  - [Construcción del Modelo Lógico](#construcción-del-modelo-lógico)
+- [📈 Gráfica](#-gráfica)
+    - [🛠️ Descripción Técnica](#️-descripción-técnica)
+  - [🏗 Construcción del Modelo Lógico](#-construcción-del-modelo-lógico)
     - [Descripción](#descripción-1)
-    - [Gráfica](#gráfica-1)
+    - [📈 Gráfica](#-gráfica-1)
     - [Descripción Técnica](#descripción-técnica)
-  - [Normalización del Modelo Lógico](#normalización-del-modelo-lógico)
-    - [Primera Forma Normal (1FN)](#primera-forma-normal-1fn)
+  - [〽 Normalización del Modelo Lógico](#-normalización-del-modelo-lógico)
+    - [1️⃣ Primera Forma Normal (1FN)](#1️⃣-primera-forma-normal-1fn)
       - [Descripción](#descripción-2)
-      - [Gráfica](#gráfica-2)
+      - [📈 Gráfica](#-gráfica-2)
       - [Descripción Técnica](#descripción-técnica-1)
-    - [Segunda Forma Normal (2FN)](#segunda-forma-normal-2fn)
+    - [2️⃣ Segunda Forma Normal (2FN)](#2️⃣-segunda-forma-normal-2fn)
       - [Descripción](#descripción-3)
-      - [Gráfica](#gráfica-3)
+      - [📈 Gráfica](#-gráfica-3)
       - [Descripción Técnica](#descripción-técnica-2)
-    - [Tercera Forma Normal (3FN)](#tercera-forma-normal-3fn)
+    - [3️⃣ Tercera Forma Normal (3FN)](#3️⃣-tercera-forma-normal-3fn)
       - [Descripción](#descripción-4)
-      - [Gráfica](#gráfica-4)
+      - [📈 Gráfica](#-gráfica-4)
       - [Descripción Técnica](#descripción-técnica-3)
-  - [Construcción del Modelo Físico](#construcción-del-modelo-físico)
+  - [🏗 Construcción del Modelo Físico](#-construcción-del-modelo-físico)
       - [Descripción](#descripción-5)
-      - [**Código**](#código)
+      - [📝**Código**](#código)
       - [Descripción Técnica](#descripción-técnica-4)
-  - [Diagrama E-R](#diagrama-e-r)
+  - [📊 Diagrama E-R](#-diagrama-e-r)
         - [Descripción](#descripción-6)
-        - [Gráfica](#gráfica-5)
+        - [📈 Gráfica](#-gráfica-5)
         - [Descripción Técnica](#descripción-técnica-5)
-  - [Tablas](#tablas)
+  - [📐 Tablas](#-tablas)
         - [Descripción](#descripción-7)
-      - [Gráfica](#gráfica-6)
+      - [📈 Gráfica](#-gráfica-6)
         - [Descripción Técnica](#descripción-técnica-6)
-  - [Relaciones entre Tablas](#relaciones-entre-tablas)
+  - [🔗📋 Relaciones entre Tablas](#-relaciones-entre-tablas)
         - [Descripción](#descripción-8)
-        - [Gráfica](#gráfica-7)
+        - [📈 Gráfica](#-gráfica-7)
         - [Descripción Técnica](#descripción-técnica-7)
-  - [Inserción de Datos](#inserción-de-datos)
+  - [📋 Inserción de Datos](#-inserción-de-datos)
         - [Descripción](#descripción-9)
-        - [Gráfica](#gráfica-8)
+        - [📈 Gráfica](#-gráfica-8)
         - [Descripción Técnica](#descripción-técnica-8)
-- [Referencias](#referencias)
-- [](#-10)
-  - [Desarrolladores](#desarrolladores)
-  - [Herramientas de Desarrollo](#herramientas-de-desarrollo)
+- [🔗 Referencias](#-referencias)
+- [](#-9)
+  - [👥 Desarrolladores](#-desarrolladores)
+  - [🛠 Herramientas de Desarrollo](#-herramientas-de-desarrollo)
 
 <br>
 <br>
@@ -134,7 +133,7 @@ El objetivo del proyecto es diseñar y desarrollar un sistema de base de datos e
 El sistema propuesto busca facilitar la gestión de hospitales, pacientes, personal médico y administrativo, áreas especializadas, tratamientos, medicamentos, visitas médicas e historiales clínicos. Además, se incluirán mecanismos de autenticación y control de acceso basados en roles para garantizar la seguridad y privacidad de la información. A través de consultas optimizadas y funciones re utilizables, se pretende brindar a los usuarios herramientas para la toma de decisiones, el control de inventario, el análisis de datos clínicos y la mejora continua en la atención médica.
 
 
-## Caso de Estudio
+## 📚 Caso de Estudio
 
 - [Recurso Base](https://drive.google.com/file/d/1MqFQ7nI6pOwNBHwOSZjvmbwOalD-9zoG/view)
 
@@ -158,7 +157,7 @@ Tendremos en cuenta la gestión de las siguientes entidades que serán claves:
 Usaremos MongoDB ya que nos permite almacenar datos de manera flexible lo que es ideal para manejar documentos clínicos que pueden variar en estructuras según el paciente o especialidad , además de su capacidad de escalabilidad en sistemas hospitalarios que pueden crecer con el tiempo.
 
 
-# Planificación
+# 📄 Planificación
 
 La planificación del proyecto se ha estructurado en **etapas progresivas**, con base en el análisis de requerimientos del sistema hospitalario, su estructura funcional y los datos que se deben gestionar. El objetivo es lograr una base de datos No SQL eficiente, escalable y coherente con el funcionamiento real de una institución médica.
 
@@ -166,11 +165,24 @@ Siguiendo la construcción del sistema hospitalario en MongoDB requiere una plan
 
 Para finalizar la planificación del sistema hospitalario la basamos en etapas progresivas en la cual abordamos cada componente de manera lógica, modular y escalable. Diseñado a partir de una base de las necesidades específicas de un entorno clínico real , considerando tanto la complejidad de la información como la dinámica que tiene cada área, el personal y sus pacientes.
 
-## Construcción del Modelo Conceptual
+<br>
+
+## 🏗 Construcción del Modelo Conceptual
+
+Durante la construcción del modelo conceptual, nuestro objetivo principal fue estructurar una base de datos que no solo cumpliera con los requerimientos técnicos de un sistema hospitalario moderno, sino que también representara con fidelidad el funcionamiento real de una institución médica. 
+Desde el inicio, nos propusimos que cada colección reflejara relaciones reales entre pacientes, médicos, personal administrativo, tratamientos, medicamentos y espacios físicos, manteniendo siempre la coherencia, escalabilidad y eficiencia en la gestión de la información.
+
+<br>
 
 
 ### Descripción
 
+
+Para diseñar el modelo, partimos de entidades fundamentales como hospitales, las cuales actúan como eje central del sistema. Cada hospital se encuentra relacionado directamente con sus áreas especializadas, su personal (médico, administrativo, de enfermería, directivo y de servicios), así como con los pacientes que atiende. A partir de esta estructura, definimos otras entidades como pacientes, visitas médicas, historiales clínicos, tratamientos y medicamentos, todas enlazadas mediante referencias claras que permiten trazar un recorrido completo de atención dentro del sistema. 
+
+Un aspecto clave fue unificar la gestión del personal en una sola colección (personal), subdividido lógicamente por roles, lo cual nos permitió reducir redundancias y facilitar las consultas posteriores. Asimismo, modelamos los seguros médicos como documentos referenciados que amplían la información del paciente sin sobrecargar su estructura. 
+
+Las relaciones entre especialidades, tratamientos y medicamentos también fueron cuidadosamente mapeadas para garantizar una segmentación lógica y detallada que permita analizar la operación del hospital por áreas médicas. Este diseño se realizó considerando la integración fluida de todos los componentes y dejando la estructura lista para escalar e integrar nuevas funcionalidades.
 
 <br>
 
@@ -443,20 +455,16 @@ Registro de las atenciones médicas.
 </details>
 
 
-
- #
 Analizar quienes tendran el `permisos: ["ver_pacientes", "editar_visitas"]`   para modelar los roles y el acceso de un array de permisos
-
---- 
-
-### (OPCIONAL)
+  
+(OPCIONAL):
 tener en cuenta implementar o no **Citas y turnos** (gestión de tiempos)  , **Inventario y facturación** (gestión operativa y financiera) , Consentimientos, Reportes, Alertas, Adjuntos, Encuestas  
 
 
-<br>
 
 
-# Gráfica
+
+# 📈 Gráfica
 
 ```mermaid
 
@@ -769,10 +777,21 @@ Visitas -->|hospital| Hospitales
 ```
 
 
+<br>
+
+### 🛠️ Descripción Técnica
+
+Técnicamente, el modelo conceptual fue construido con un enfoque modular, usando `ObjectId` como identificadores únicos y referencias entre documentos para mantener la integridad referencial. Se aplicó el principio de reutilización a través de arrays referenciales en campos como hospital_asignado, medicamentosUsados, historialClinico o areasEspecializadas, lo que permite mantener un alto nivel de normalización sin sacrificar el rendimiento. 
+
+Se emplearon estructuras anidadas en contextos donde era más eficiente agrupar datos directamente, como los formularios clínicos del historial o los planes de tratamiento, evitando consultas innecesarias. La clasificación del personal dentro de una colección común con discriminación por tipo de rol facilita la validación y el control de accesos, mientras que el uso de relaciones bidireccionales entre visitas, médicos y pacientes permite reconstruir trayectorias clínicas completas. 
+
+Este modelo conceptual, respaldado por una gráfica ER coherente, establece las bases técnicas para avanzar hacia el modelo lógico y físico sin necesidad de rediseñar las relaciones principales, y garantiza un manejo robusto y flexible de la información médica, administrativa y operativa del sistema hospitalario.
+
+
 
 <br>
 
-## Construcción del Modelo Lógico
+## 🏗 Construcción del Modelo Lógico
 
 <br>
 
@@ -780,7 +799,7 @@ Visitas -->|hospital| Hospitales
 
 <br>
 
-### Gráfica
+### 📈 Gráfica
 <br>
 
 ```mermaid
@@ -930,15 +949,15 @@ erDiagram
 
 
 
-## Normalización del Modelo Lógico
+## 〽 Normalización del Modelo Lógico
 
   
 
-### Primera Forma Normal (1FN)
+### 1️⃣ Primera Forma Normal (1FN)
 
 #### Descripción
 
-#### Gráfica
+#### 📈 Gráfica
 
 
 ```mermaid
@@ -1068,12 +1087,12 @@ erDiagram
 
 
  
-### Segunda Forma Normal (2FN)
+### 2️⃣ Segunda Forma Normal (2FN)
 
 
 #### Descripción
 
-#### Gráfica
+#### 📈 Gráfica
 
 ```mermaid
 erDiagram
@@ -1212,68 +1231,68 @@ HOSPITALES ||--o{ AREAS_ESPECIALIZADAS : tiene
 
 
 
-### Tercera Forma Normal (3FN)
+### 3️⃣ Tercera Forma Normal (3FN)
 
 #### Descripción
 
-#### Gráfica
+#### 📈 Gráfica
 
 #### Descripción Técnica
 
 
   
 
-## Construcción del Modelo Físico
+## 🏗 Construcción del Modelo Físico
 
 
 #### Descripción
 
-#### **Código**
+#### 📝**Código**
 
 #### Descripción Técnica
 
  
 
-## Diagrama E-R
+## 📊 Diagrama E-R
 
   
 ##### Descripción
 
-##### Gráfica
+##### 📈 Gráfica
 
 ##### Descripción Técnica
 
 
 
 
-## Tablas
+## 📐 Tablas
 
 ##### Descripción
 
-#### Gráfica
+#### 📈 Gráfica
 
 ##### Descripción Técnica
 
 
-## Relaciones entre Tablas
+## 🔗📋 Relaciones entre Tablas
 
 ##### Descripción
 
-##### Gráfica
+##### 📈 Gráfica
 
 ##### Descripción Técnica
 
 
-## Inserción de Datos
+## 📋 Inserción de Datos
 
 ##### Descripción
 
-##### Gráfica
+##### 📈 Gráfica
 
 ##### Descripción Técnica
 
 
-# Referencias
+# 🔗 Referencias
 
 - [ Sistema de Información Hospitalaria](https://www.sciencedirect.com/topics/computer-science/hospital-information-system)
 
@@ -1282,14 +1301,14 @@ HOSPITALES ||--o{ AREAS_ESPECIALIZADAS : tiene
 #
 <br>
 
-## Desarrolladores
+## 👥 Desarrolladores
 
 - [@Danny200523](https://github.com/Danny200523)
 - [@AuraCamilaPicoAraque](https://github.com/AuraCamilaPicoAraque)
 
 <br>
 
-## Herramientas de Desarrollo
+## 🛠 Herramientas de Desarrollo
 
 
 <p align="left">
