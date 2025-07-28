@@ -122,6 +122,36 @@
 <br>
 <br>
 
+## ✅ Requisitos del Sistema
+
+<div align="center">
+
+<img src="https://img.shields.io/badge/MongoDB-6.0+-47A248?logo=mongodb&logoColor=white"/>
+<img src="https://img.shields.io/badge/MongoDB%20Compass-1.40+-green?logo=mongodb"/>
+<img src="https://img.shields.io/badge/Node.js-18.x+-339933?logo=node.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/Editor-VSCode-007ACC?logo=visualstudiocode&logoColor=white"/>
+
+</div>
+
+Para el desarrollo de nuestro **Sistema Hospitalario en MongoDB**, nosotros utilizamos el siguiente entorno tecnológico:
+
+- **MongoDB** `v6.0` o superior  
+  Es el motor de base de datos NoSQL que elegimos para estructurar y almacenar toda la información hospitalaria, permitiéndonos trabajar con colecciones flexibles y relaciones referenciales.
+
+- **MongoDB Compass** `v1.40` o superior  
+  Esta herramienta nos facilitó la visualización y validación de nuestras colecciones, así como la ejecución de consultas y operaciones CRUD durante el proceso de pruebas.
+
+- **Node.js** `v18.x` o superior *(opcional)*  
+  Lo consideramos útil para crear scripts que automatizan la carga de datos y simulan interacciones con la base de datos desde una lógica de backend.
+
+- **Visual Studio Code**  
+  Fue nuestro editor de código principal. Nos permitió mantener una estructura organizada del proyecto y colaborar de manera eficiente.
+
+> 🛠️ Recomendamos verificar que el servicio de MongoDB esté corriendo correctamente en el entorno local antes de iniciar con las inserciones o consultas.
+
+
+<br>
+<br>
 
 #  🏥 Sistema Hospitalario 
 
