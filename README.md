@@ -1312,193 +1312,238 @@ Por esta razón, estos datos fueron trasladados a colecciones independientes: ro
 Esta reestructuración eliminó la dependencia de atributos entre sí y aseguró que todas las colecciones reflejaran únicamente relaciones directas con sus claves primarias.
 
 
+
 <br>
 
 ## 📈 Gráfica
 ```mermaid
 erDiagram
+    HOSPITALES ||--o{ AREAS_ESPECIALIZADAS : tiene
+    HOSPITALES ||--o{ PACIENTES : atiende
+    HOSPITALES ||--o{ PERSONAL : emplea
+    HOSPITALES ||--o{ MEDICAMENTOS : dispone
+    HOSPITALES ||--o{ CITAS : programa
+    HOSPITALES ||--o{ FACTURAS : factura
 
-HOSPITALES ||--o{ AREAS_ESPECIALIZADAS : tiene
-HOSPITALES ||--o{ PACIENTES : atiende
-HOSPITALES ||--o{ PERSONAL : emplea
-HOSPITALES ||--o{ MEDICAMENTOS : dispone
-HOSPITALES ||--o{ CITAS : programa
+    AREAS_ESPECIALIZADAS ||--o{ TRATAMIENTOS : contiene
+    AREAS_ESPECIALIZADAS ||--o{ HISTORIALES_CLINICOS : asociados
 
-AREAS_ESPECIALIZADAS ||--o{ TRATAMIENTOS : contiene
-AREAS_ESPECIALIZADAS ||--o{ HISTORIALES_CLINICOS : asociados
+    PACIENTES ||--o{ HISTORIALES_CLINICOS : tiene
+    PACIENTES ||--|| SEGUROS_MEDICOS : usa
+    PACIENTES ||--o{ VISITAS_MEDICAS : recibe
+    PACIENTES ||--o{ CITAS : agenda
+    PACIENTES ||--o{ FACTURAS : genera
 
-PACIENTES ||--o{ HISTORIALES_CLINICOS : tiene
-PACIENTES ||--|| SEGUROS_MEDICOS : usa
-PACIENTES ||--o{ VISITAS_MEDICAS : recibe
-PACIENTES ||--o{ CITAS : agenda
-PACIENTES ||--o{ FACTURAS : genera
+    SEGUROS_MEDICOS ||--|| TIPOSEGURO : clasificado
+    TIPOSEGURO ||--|| ENTIDADASEGURADORA : emitido_por
+    TIPOSEGURO ||--|| ESTADOSEGURO : tiene_estado
 
-HISTORIALES_CLINICOS ||--o{ TRATAMIENTOS_ASIGNADOS : requiere
+    HISTORIALES_CLINICOS ||--o{ TRATAMIENTOS_ASIGNADOS : requiere
+    HISTORIALES_CLINICOS ||--|| RESULTADOS : contiene
 
-VISITAS_MEDICAS ||--|| PERSONAL : realizada_por
+    RESULTADOS ||--|| PERSONAL : profesional_asignado
 
-PERSONAL ||--|| ROLES : tiene
-PERSONAL ||--o{ COLEGIATURAS : posee
-PERSONAL ||--|| ESPECIALIDADES_MEDICAS : especializado_en
-PERSONAL ||--o{ HORARIOS : trabaja_en
+    TRATAMIENTOS ||--o{ TRATAMIENTOS_ASIGNADOS : aplica
+    MEDICAMENTOS ||--o{ TRATAMIENTOS_ASIGNADOS : incluidos_en
+    MEDICAMENTOS ||--|| FABRICANTES : fabricado_por
+    MEDICAMENTOS ||--o{ MEDICAMENTOREACCIONADVERSA : relacionado
+    MEDICAMENTOREACCIONADVERSA ||--|| REACCIONESADVERSAS : provoca
 
-TRATAMIENTOS ||--o{ TRATAMIENTOS_ASIGNADOS : aplica
-MEDICAMENTOS ||--o{ TRATAMIENTOS_ASIGNADOS : incluidos_en
+    TRATAMIENTOS_ASIGNADOS ||--|| PERSONAL : asignado_por
+    TRATAMIENTOS_ASIGNADOS ||--|| PERSONAL : aplicado_por
 
-CITAS ||--|| PERSONAL : atendido_por
+    VISITAS_MEDICAS ||--|| PERSONAL : realizada_por
 
-FACTURAS ||--o{ PAGOS : tiene
+    PERSONAL ||--|| ROLES : tiene
+    PERSONAL ||--|| COLEGIATURAS : posee
+    PERSONAL ||--|| HORARIOS : trabaja_en
+    PERSONAL ||--|| ESPECIALIDADES_MEDICAS : especializado_en
 
-HOSPITALES {
-  string idHospital PK
-  string nombre
-  string ubicacion
-  number telefono
-}
+    CITAS ||--|| PERSONAL : atendido_por
+    CITAS ||--|| ESTADO : estado
 
-AREAS_ESPECIALIZADAS {
-  string idArea PK
-  string nombre
-  string descripcion
-  string idHospital FK
-}
+    FACTURAS ||--o{ PAGOS : tiene
 
-PACIENTES {
-  string idPaciente PK
-  string nombre
-  string direccion
-  string telefono
-  string correo
-  string numeroHistoriaClinica
-  string idSeguro FK
-  string idHospital FK
-}
+    HOSPITALES {
+        ObjectId idHospital PK
+        String nombre
+        String ubicacion
+        Number telefono
+    }
 
-SEGUROS_MEDICOS {
-  string idSeguro PK
-  string nombre
-  string compania
-  string tipo_seguro
-}
+    AREAS_ESPECIALIZADAS {
+        ObjectId idArea PK
+        String nombre
+        String descripcion
+    }
 
-HISTORIALES_CLINICOS {
-  string idHistorial PK
-  string motivoConsulta
-  string diagnostico
-  string resultados
-  string fecha
-  string idPaciente FK
-  string idArea FK
-}
+    PACIENTES {
+        ObjectId idPaciente PK
+        String nombre
+        String direccion
+        String telefono
+        String correo
+        String numeroHistoriaClinica
+    }
 
-TRATAMIENTOS {
-  string idTratamiento PK
-  string nombre
-  string descripcion
-  string planTratamiento
-  string duracionEstimada
-  float costo
-  string idArea FK
-}
+    SEGUROS_MEDICOS {
+        ObjectId idSeguro PK
+        String nombre
+        String compania
+    }
 
-MEDICAMENTOS {
-  string idMedicamento PK
-  string nombre
-  string fabricante
-  string tipo
-  string dosisEstandar
-  string frecuencia
-  string viaAdministracion
-  string reaccionesAdversas
-  int inventario
-  string idHospital FK
-}
+    TIPOSEGURO {
+        ObjectId idTipoSeguro PK
+        String nombre
+        String cobertura
+        String numeroPoliza
+        DateTime vigenciaInicio
+        DateTime vigenciaFinal
+        String condiciones
+    }
 
-TRATAMIENTOS_ASIGNADOS {
-  string idAsignacion PK
-  string idHistorial FK
-  string idTratamiento FK
-  string idMedicamento FK
-  string fechaAplicacion
-  string observaciones
-  string idPersonalMedico FK
-  string idPersonalEnfermero FK
-}
+    ENTIDADASEGURADORA {
+        ObjectId idEntidadAseguradora PK
+        String nombre
+        String afiliacion
+        String ubicacion
+        String telefono
+        String correo
+        DateTime fechaRegistro
+    }
 
-VISITAS_MEDICAS {
-  string idVisita PK
-  string tipoVisita
-  string observaciones
-  string fecha
-  string hora
-  string diagnostico
-  string idPaciente FK
-  string idMedico FK
-}
+    ESTADOSEGURO {
+        ObjectId idEstadoSeguro PK
+        String estado
+        DateTime fechaCreacion
+        String prioridad
+        Boolean vencimiento
+    }
 
-PERSONAL {
-  string idPersonal PK
-  string nombre
-  string telefono
-  string correo
-  float salario
-  string idHospital FK
-  string idRol FK
-  string idEspecialidad FK
-}
+    HISTORIALES_CLINICOS {
+        ObjectId idHistorial PK
+        String motivoConsulta
+        String diagnostico
+        DateTime fecha
+    }
 
-COLEGIATURAS {
-  string idColegiatura PK
-  string numero
-  string idPersonal FK
-}
+    RESULTADOS {
+        ObjectId idResultados PK
+        String tipoExamen
+        DateTime fecha
+        String descripcion
+    }
 
-ESPECIALIDADES_MEDICAS {
-  string idEspecialidad PK
-  string nombreEspecialidad
-}
+    TRATAMIENTOS {
+        ObjectId idTratamiento PK
+        String nombre
+        String descripcion
+        String planTratamiento
+        String duracionEstimada
+        Float costo
+    }
 
-ROLES {
-  string idRol PK
-  string nombreRol
-  string descripcion
-}
+    MEDICAMENTOS {
+        ObjectId idMedicamento PK
+        String nombre
+        String tipo
+        String dosisEstandar
+        String frecuencia
+        Int inventario
+    }
 
-HORARIOS {
-  string idHorario PK
-  string dia
-  string horaEntrada
-  string horaSalida
-  string idPersonal FK
-}
+    MEDICAMENTOREACCIONADVERSA {
+        ObjectId idmedicamento PK
+    }
 
-CITAS {
-  string idCita PK
-  string fecha
-  string hora
-  string motivo
-  string estado
-  string idPaciente FK
-  string idPersonal FK
-  string idHospital FK
-}
+    REACCIONESADVERSAS {
+        ObjectId idReacciones PK
+        String nombre
+        String gravedad
+        String descripcion
+    }
 
-FACTURAS {
-  string idFactura PK
-  string fechaEmision
-  float total
-  string metodoPago
-  string idPaciente FK
-  string idHospital FK
-}
+    FABRICANTES {
+        String idFabricante PK
+        String nombreFabri
+        String paisOrigen
+        String telefono
+        String direccion
+        String estado
+    }
 
-PAGOS {
-  string idPago PK
-  string fechaPago
-  float monto
-  string metodo
-  string idFactura FK
-}
+    TRATAMIENTOS_ASIGNADOS {
+        ObjectId idAsignacion PK
+        Date fechaAplicacion
+        String observaciones
+    }
+
+    VISITAS_MEDICAS {
+        ObjectId idVisita PK
+        String tipoVisita
+        String observaciones
+        Date fecha
+        String hora
+        String diagnostico
+    }
+
+    PERSONAL {
+        ObjectId idPersonal PK
+        String nombre
+        String telefono
+        String correo
+        Float salario
+    }
+
+    COLEGIATURAS {
+        ObjectId idColegiatura PK
+        String numero
+    }
+
+    ESPECIALIDADES_MEDICAS {
+        ObjectId idEspecialidad PK
+        String nombreEspecialidad
+    }
+
+    ROLES {
+        ObjectId idRol PK
+        String nombreRol
+        String descripcion
+    }
+
+    HORARIOS {
+        ObjectId idHorario PK
+        String dia
+        String horaEntrada
+        String horaSalida
+    }
+
+    CITAS {
+        ObjectId idCita PK
+        Date fecha
+        String hora
+        String motivo
+    }
+
+    ESTADO {
+        ObjectId idEstado PK
+        String etapaEstado
+        String descripcion
+    }
+
+    FACTURAS {
+        ObjectId idFactura PK
+        Date fechaEmision
+        Float total
+        String metodoPago
+    }
+
+    PAGOS {
+        ObjectId idPago PK
+        Date fechaPago
+        Float monto
+        String metodo
+    }
 ```
 
 
@@ -1517,7 +1562,314 @@ Esta separación lógica permite mantener una alta cohesión dentro de cada cole
 <br><br>
   
 
+
+<details>
+  <summary><strong> 🧰 Estructura del Modelo Finalizado de la Normalizacion </strong></summary>
+  
+## 📁 Estructura Modelo Final Normalizacion
+
+---
+
+### 1. 🏥 hospitales
+
+Representa los hospitales del sistema.
+
+- `idHospital`: ObjectId (PK)  
+- `nombre`: String  
+- `ubicacion`: String  
+- `telefono`: Number  
+- Relaciones:  
+  - Tiene → `AREAS_ESPECIALIZADAS`  
+  - Atiende → `PACIENTES`  
+  - Emplea → `PERSONAL`  
+  - Dispone → `MEDICAMENTOS`  
+  - Programa → `CITAS`  
+
+---
+
+### 2. 🧠 areasEspecializadas
+
+- `idArea`: ObjectId (PK)  
+- `nombre`: String  
+- `descripcion`: String  
+- `idHospital`: Ref → `HOSPITALES`  
+- Relaciones:  
+  - Contiene → `TRATAMIENTOS`  
+  - Asociados → `HISTORIALES_CLINICOS`  
+
+---
+
+### 3. 🧍 pacientes
+
+- `idPaciente`: ObjectId (PK)  
+- `nombre`: String  
+- `direccion`: String  
+- `telefono`: String  
+- `correo`: String  
+- `numeroHistoriaClinica`: String  
+- `idSeguro`: Ref → `SEGUROS_MEDICOS`  
+- `idHospital`: Ref → `HOSPITALES`  
+- Relaciones:  
+  - Tiene → `HISTORIALES_CLINICOS`  
+  - Recibe → `VISITAS_MEDICAS`  
+  - Agenda → `CITAS`  
+  - Genera → `FACTURAS`  
+
+---
+
+### 4. 💳 segurosMedicos
+
+- `idSeguro`: ObjectId (PK)  
+- `nombre`: String  
+- `compania`: String  
+- `idTipoSeguro`: Ref → `TIPOSEGURO`  
+
+---
+### 5. 💳 tipoSeguro
+
+- ` idTipoSeguro`: ObjectId (PK) 
+- ` nombre ` : String
+- `cobertura` : String
+- `numeroPoliza` : String
+- `vigenciaInicio` : DateTime
+- `vigenciaFinal` : DateTime
+- `condiciones` : String
+- `idEntidadAseguradora`: Ref → `ENTIDADASEGURADORA`  
+- `idEstadoSeguro`: Ref → `ESTADOSEGURO`  
+
+---
+### 6. 💳 entidadAseguradora
+
+- `idEntidadAseguradora`: ObjectId (PK) 
+-  `nombre` : String
+-  `afiliacion` : String
+- `ubicacion`: String  
+- `telefono`: String  
+- `correo` : String
+- `paginaWeb` : String
+- `fechaRegistro` : DateTime
+
+---
+### 7. 💳 estadoSeguro
+
+- `idEstadoSeguro` : ObjectId (PK) 
+- `estado`: String
+- `fechaCreacion` : DateTime
+- `prioridad` : String
+- `Vencimiento` : Booleano
+
+---
+
+### 8. 📋 historialesClinicos
+
+- `idHistorial`: ObjectId (PK)  
+- `motivoConsulta`: String  
+- `diagnostico`: String  
+- `fecha`: DateTime  
+- `idPaciente`: Ref → `PACIENTES`  
+- `idResultados`: Ref → `RESULTADOS`  
+- `idArea`: Ref → `AREAS_ESPECIALIZADAS`  
+- Relaciones:  
+  - Requiere → `TRATAMIENTOS_ASIGNADOS`  
+---
+
+### 9. 📋 Resultados
+
+- `idResultados` :  ObjectId (PK)  
+- `TipoExamen` : String
+- `Fecha`:  DateTime
+- `Descripcion` : String
+- `profesionalAsignado`: ->  `idMedico`: Ref → `PERSONAL`  
+
+
+---
+
+### 10. 💉 tratamientos
+
+- `idTratamiento`: ObjectId (PK)  
+- `nombre`: String  
+- `descripcion`: String  
+- `planTratamiento`: String  
+- `duracionEstimada`: String  
+- `costo`: Float  
+- `idArea`: Ref → `AREAS_ESPECIALIZADAS`  
+- Relaciones:  
+  - Aplica → `TRATAMIENTOS_ASIGNADOS`  
+
+---
+
+### 11. 💊 medicamentos
+
+- `idMedicamento`: ObjectId (PK)  
+- `nombre`: String  
+- `tipo`: String  
+- `dosisEstandar`: String  
+- `frecuencia`: String  
+- `inventario`: Int  
+-  `idFabricante`: Ref → `FABRICANTES`
+- `idHospital`: Ref → `HOSPITALES`  
+- `idmedicamento`: Ref → `MEDICAMNTOREACCIONADVERSA`  
+- Relaciones:  
+  - Incluidos en → `TRATAMIENTOS_ASIGNADOS`  
+
+---
+### 12. 💊 medicamentoReaccionAdversa
+- `idmedicamento` : ObjectId (PK) 
+- `idReacciones`: Ref → `REACCIONESADVERSAS`  
+
+---
+
+### 13 💊 reaccionesAdversas
+
+- `idReacciones` : ObjectId (PK) 
+- `nombre`: String
+- `gravedad` : String
+- `descripcion`: String
+
+---
+### 14. 💊 Fabricantes
+
+- `idFabricante`:  String
+- `nombreFabri`: String
+- `paisOrigen`: String
+- `telefono`: String
+- `direccion` : String
+- `estado` : String
+
+
+---
+### 15. 🩺 tratamientosAsignados
+
+- `idAsignacion`: ObjectId (PK)  
+- `idHistorial`: Ref → `HISTORIALES_CLINICOS`  
+- `idTratamiento`: Ref → `TRATAMIENTOS`  
+- `idMedicamento`: Ref → `MEDICAMENTOS`  
+- `fechaAplicacion`: Date  
+- `observaciones`: String  
+- `idPersonalMedico`: Ref → `PERSONAL`  
+- `idPersonalEnfermero`: Ref → `PERSONAL`  
+
+---
+
+### 16. 📆 visitasMedicas
+
+- `idVisita`: ObjectId (PK)  
+- `tipoVisita`: String  
+- `observaciones`: String  
+- `fecha`: Date  
+- `hora`: String  
+- `diagnostico`: String  
+- `idPaciente`: Ref → `PACIENTES`  
+- `idMedico`: Ref → `PERSONAL`  
+- Relaciones:  
+  - Realizada por → `PERSONAL`  
+
+---
+
+### 17. 🧑‍⚕️ personal
+
+- `idPersonal`: ObjectId (PK)  
+- `nombre`: String  
+- `telefono`: String  
+- `correo`: String  
+- `salario`: Float  
+- `idHospital`: Ref → `HOSPITALES`  
+- `idRol`: Ref → `ROLES`  
+- `idEspecialidad`: Ref → `ESPECIALIDADES_MEDICAS`  
+- Relaciones:  
+  - Posee → `COLEGIATURAS`  
+  - Trabaja en → `HORARIOS`  
+  - Especializado en → `ESPECIALIDADES_MEDICAS`  
+
+---
+
+### 18. 🆔 colegiaturas
+
+- `idColegiatura`: ObjectId (PK)  
+- `numero`: String  
+- `idPersonal`: Ref → `PERSONAL`  
+
+---
+
+### 19. 📚 especialidadesMedicas
+
+- `idEspecialidad`: ObjectId (PK)  
+- `nombreEspecialidad`: String  
+
+---
+
+### 20. 🏷️ roles
+
+- `idRol`: ObjectId (PK)  
+- `nombreRol`: String  
+- `descripcion`: String  
+
+---
+
+### 21. ⏰ horarios
+
+- `idHorario`: ObjectId (PK)  
+- `dia`: String  
+- `horaEntrada`: String  
+- `horaSalida`: String  
+- `idPersonal`: Ref → `PERSONAL`  
+
+---
+
+### 22. 📅 citas
+
+- `idCita`: ObjectId (PK)  
+- `fecha`: Date  
+- `hora`: String  
+- `motivo`: String  
+- `idEstado`:  Ref → `ESTADO` 
+- `idPaciente`: Ref → `PACIENTES`  
+- `idPersonal`: Ref → `PERSONAL`  
+- `idHospital`: Ref → `HOSPITALES`  
+- Relaciones:  
+  - Atendido por → `PERSONAL`  
+  
+---
+
+### 23. 📅 estado
+
+- `idEstado`: ObjectId (PK)  
+- `etapaEstado` : String
+- `Descripcion`: String
+
+
+### 24. 📄 facturas
+
+- `idFactura`: ObjectId (PK)  
+- `fechaEmision`: Date  
+- `total`: Float  
+- `metodoPago`: String  
+- `idPaciente`: Ref → `PACIENTES`  
+- `idHospital`: Ref → `HOSPITALES`  
+- Relaciones:  
+  - Tiene → `PAGOS`  
+
+---
+
+### 25. 💰 pagos
+
+- `idPago`: ObjectId (PK)  
+- `fechaPago`: Date  
+- `monto`: Float  
+- `metodo`: String  
+
+
+</details>
+
+
+
+#### Explicacion 
+
+Para la estructura finalizada de la normalizacion implementamos las `referencias` para guiarnos en el momento de aplicarlo al modelo fisico , de igual manera entregamos la estructura visual de los atributos para que el usuario se relacione al momento de ejecutar en el siguiente modelo.
+
+
 ## 🏗 Construcción del Modelo Físico
+
 
 
 #### Descripción
@@ -1536,80 +1888,6 @@ Esta separación lógica permite mantener una alta cohesión dentro de cada cole
 
 
 
- <br><br>
-
-## 📊 Diagrama E-R
-
-
-
-<br>
-  
-##### Descripción
-
-
-
-<br>
-
-## 📈 Gráfica
-
-
-
-<br>
-
-##### Descripción Técnica
-
-
-
-
-<br><br>
-
-## 📐 Tablas
-
-
-
-<br>
-
-##### Descripción
-
-
-
-<br>
-
-## 📈 Gráfica
-
-
-
-<br>
-
-##### Descripción Técnica
-
-
-
-<br><br>
-
-## 🔗📋 Relaciones entre Tablas
-
-
-
-<br>
-
-##### Descripción
-
-
-
-<br>
-
-## 📈 Gráfica
-
-
-
-<br>
-
-##### Descripción Técnica
-
-
-
-<br><br>
 
 ## 📋 Inserción de Datos
 
