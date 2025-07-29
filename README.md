@@ -2544,8 +2544,16 @@ Esta configuración nos permite mantener la integridad de los datos, controlar l
 
 ## 👥 Desarrolladores
 
-[![Danny200523](https://img.shields.io/badge/GitHub-Danny200523-181717?style=for-the-badge&logo=github)](https://github.com/Danny200523)
-[![AuraCamilaPicoAraque](https://img.shields.io/badge/GitHub-AuraCamilaPicoAraque-181717?style=for-the-badge&logo=github)](https://github.com/AuraCamilaPicoAraque)
+<div align="center">
+
+  <a href="https://github.com/Danny200523">
+    <img src="https://img.shields.io/badge/GitHub-DanielEstebanGuerreroQuintero-181717?style=for-the-badge&logo=github" alt="Danny200523">
+  </a> <br>
+  <a href="https://github.com/AuraCamilaPicoAraque">
+    <img src="https://img.shields.io/badge/GitHub-AuraCamilaPicoAraque-181717?style=for-the-badge&logo=github" alt="AuraCamilaPicoAraque">
+  </a>
+
+</div>
 
 
 <br>
@@ -2560,3 +2568,84 @@ Esta configuración nos permite mantener la integridad de los datos, controlar l
 <h3 align="center"> MongoDB ~ </h3>
 
 </p>
+
+<br>
+
+<br>
+
+## 🤝 Contribuciones
+
+<div align="center">
+
+<img src="https://img.shields.io/badge/Trabajo%20en%20equipo-Colaborativo-6A1B9A?style=for-the-badge&logo=teams&logoColor=white"/>
+<img src="https://img.shields.io/badge/Colaboradores-2%20integrantes-1976D2?style=for-the-badge&logo=visualstudio&logoColor=white"/>
+
+</div>
+
+<br>
+
+Este proyecto fue desarrollado de manera colaborativa, dividiendo responsabilidades de forma clara para asegurar una construcción estructurada y completa del sistema hospitalario:
+
+---
+
+### 👩‍💻 Aura Camila Pico Araque  
+[![GitHub - AuraCamilaPicoAraque](https://img.shields.io/badge/GitHub-AuraCamilaPicoAraque-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/AuraCamilaPicoAraque)
+
+- Responsable de la **documentación completa del proyecto**.  
+- Diseño de la idea base para la **estructura de la base de datos** y modelo conceptual.  
+- Validación de **consultas** e implementación inicial del código en MongoDB.
+
+---
+
+### 👨‍💻 Daniel Esteban Guerrero Quintero  
+[![GitHub - Danny200523](https://img.shields.io/badge/GitHub-Danny200523-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Danny200523)
+
+- Desarrollo de los **diagramas Mermaid** para representar el modelo ER.  
+- Encargado de la **normalización completa** del modelo hasta 3FN.  
+- Implementación de las **100 consultas, inserciones y validaciones** funcionales.  
+- Apoyo conjunto en la funcionalidad general del sistema con su compañera.
+
+---
+
+> *Ambos contribuyeron de manera activa al diseño lógico y físico del sistema, asegurando su estructura, coherencia y funcionalidad completa en MongoDB.*
+
+---
+
+
+<br>
+<br>
+
+## 📜 Licencia y Contacto
+
+<div align="center">
+
+<img src="https://img.shields.io/badge/Licencia-MIT-0A66C2?style=for-the-badge&logo=open-source-initiative&logoColor=white"/>
+<img src="https://img.shields.io/badge/Contacto-Disponible-24292E?style=for-the-badge&logo=github&logoColor=white"/>
+
+<img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="200" align="right"/>
+
+</div>
+
+<br>
+
+Este proyecto se encuentra bajo la licencia **MIT**, lo que significa que puedes usarlo, modificarlo y distribuirlo libremente, siempre que mantengas los créditos correspondientes.
+
+Si tienes dudas, sugerencias o encuentras algún problema con la implementación, no dudes en contactarnos:
+
+<div align="left">
+
+### 👤 Aura Camila Pico Araque  
+[![GitHub - AuraCamilaPicoAraque](https://img.shields.io/badge/GitHub-AuraCamilaPicoAraque-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/AuraCamilaPicoAraque)  
+[![Email - Aura](https://img.shields.io/badge/Email-aura.camila@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:aura.camila@ejemplo.com)
+
+### 👤 Daniel Esteban Guerrero Quintero  
+[![GitHub - Danny200523](https://img.shields.io/badge/GitHub-DanielEstebanGuerreroQuintero-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Danny200523)  
+[![Email - Daniel](https://img.shields.io/badge/Email-daniel.guerrero@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:daniel.guerrero@ejemplo.com)
+
+</div>
+
+<br>
+
+> *¡Gracias por revisar nuestro proyecto del Sistema Hospitalario! Tu feedback es siempre bienvenido.* 🏥💻
+
+---
