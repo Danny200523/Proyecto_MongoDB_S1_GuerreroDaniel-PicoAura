@@ -419,3 +419,17 @@ db.createCollection("pagos",{
     }
 })
 
+db.createCollection("tareasInfraestructura",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","tipoAmbiente","nombreServicio"],
+            properties:{
+                _id:{bsonType:"int"},
+                tipoAmbiente:{bsonType:"string"},
+                nombreServicio:{bsonType:"string"}
+            }
+        }
+    }
+})
+
