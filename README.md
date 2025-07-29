@@ -46,9 +46,15 @@
 - [Sistema Hospitalario](#sistema-hospitalario)
 - [](#)
   - [Tabla de Contenidos](#tabla-de-contenidos)
+  - [✅ Requisitos del Sistema](#-requisitos-del-sistema)
 - [🏥 Sistema Hospitalario](#-sistema-hospitalario)
   - [Introducción](#introducción)
   - [📚 Caso de Estudio](#-caso-de-estudio)
+        - [Estructura del Sistema](#estructura-del-sistema)
+        - [Pacientes](#pacientes)
+        - [Médicos y Personal](#médicos-y-personal)
+        - [Tratamientos y Medicamentos](#tratamientos-y-medicamentos)
+        - [Visitas Médicas](#visitas-médicas)
 - [📄 Planificación](#-planificación)
   - [🏗 Construcción del Modelo Conceptual](#-construcción-del-modelo-conceptual)
     - [Descripción](#descripción)
@@ -82,38 +88,53 @@
   - [📈 Gráfica](#-gráfica-1)
     - [Descripción Técnica](#descripción-técnica)
   - [〽 Normalización del Modelo Lógico](#-normalización-del-modelo-lógico)
-    - [1️⃣ Primera Forma Normal (1FN)](#1️⃣-primera-forma-normal-1fn)
-      - [Descripción](#descripción-2)
+  - [1️⃣ Primera Forma Normal (1FN)](#1️⃣-primera-forma-normal-1fn)
+    - [Descripción](#descripción-2)
   - [📈 Gráfica](#-gráfica-2)
-      - [Descripción Técnica](#descripción-técnica-1)
-    - [2️⃣ Segunda Forma Normal (2FN)](#2️⃣-segunda-forma-normal-2fn)
-      - [Descripción](#descripción-3)
+    - [Descripción Técnica](#descripción-técnica-1)
+  - [2️⃣ Segunda Forma Normal (2FN)](#2️⃣-segunda-forma-normal-2fn)
+    - [Descripción](#descripción-3)
   - [📈 Gráfica](#-gráfica-3)
-      - [Descripción Técnica](#descripción-técnica-2)
-    - [3️⃣ Tercera Forma Normal (3FN)](#3️⃣-tercera-forma-normal-3fn)
-      - [Descripción](#descripción-4)
+    - [Descripción Técnica](#descripción-técnica-2)
+  - [3️⃣ Tercera Forma Normal (3FN)](#3️⃣-tercera-forma-normal-3fn)
+    - [Descripción](#descripción-4)
   - [📈 Gráfica](#-gráfica-4)
-      - [Descripción Técnica](#descripción-técnica-3)
+    - [Descripción Técnica](#descripción-técnica-3)
+  - [📁 Estructura Modelo Final Normalizacion](#-estructura-modelo-final-normalizacion)
+    - [1. 🏥 hospitales](#1--hospitales-1)
+    - [2. 🧠 areasEspecializadas](#2--areasespecializadas-1)
+    - [3. 🧍 pacientes](#3--pacientes)
+    - [4. 💳 segurosMedicos](#4--segurosmedicos)
+    - [5. 💳 tipoSeguro](#5--tiposeguro)
+    - [6. 💳 entidadAseguradora](#6--entidadaseguradora)
+    - [7. 💳 estadoSeguro](#7--estadoseguro)
+    - [8. 📋 historialesClinicos](#8--historialesclinicos)
+    - [9. 📋 Resultados](#9--resultados)
+    - [10. 💉 tratamientos](#10--tratamientos)
+    - [11. 💊 medicamentos](#11--medicamentos)
+    - [12. 💊 medicamentoReaccionAdversa](#12--medicamentoreaccionadversa)
+    - [13 💊 reaccionesAdversas](#13--reaccionesadversas)
+    - [14. 💊 Fabricantes](#14--fabricantes)
+    - [15. 🩺 tratamientosAsignados](#15--tratamientosasignados)
+    - [16. 📆 visitasMedicas](#16--visitasmedicas)
+    - [17. 🧑‍⚕️ personal](#17-️-personal)
+    - [18. 🆔 colegiaturas](#18--colegiaturas)
+    - [19. 📚 especialidadesMedicas](#19--especialidadesmedicas)
+    - [20. 🏷️ roles](#20-️-roles)
+    - [21. ⏰ horarios](#21--horarios)
+    - [22. 📅 citas](#22--citas)
+    - [23. 📅 estado](#23--estado)
+    - [24. 📄 facturas](#24--facturas)
+    - [25. 💰 pagos](#25--pagos)
+    - [Explicacion](#explicacion)
   - [🏗 Construcción del Modelo Físico](#-construcción-del-modelo-físico)
-      - [Descripción](#descripción-5)
-      - [📝**Código**](#código)
-      - [Descripción Técnica](#descripción-técnica-4)
-  - [📊 Diagrama E-R](#-diagrama-e-r)
-        - [Descripción](#descripción-6)
-  - [📈 Gráfica](#-gráfica-5)
-        - [Descripción Técnica](#descripción-técnica-5)
-  - [📐 Tablas](#-tablas)
-        - [Descripción](#descripción-7)
-  - [📈 Gráfica](#-gráfica-6)
-        - [Descripción Técnica](#descripción-técnica-6)
-  - [🔗📋 Relaciones entre Tablas](#-relaciones-entre-tablas)
-        - [Descripción](#descripción-8)
-  - [📈 Gráfica](#-gráfica-7)
-        - [Descripción Técnica](#descripción-técnica-7)
-  - [📋 Inserción de Datos](#-inserción-de-datos)
-        - [Descripción](#descripción-9)
-  - [📈 Gráfica](#-gráfica-8)
-        - [Descripción Técnica](#descripción-técnica-8)
+    - [Descripción](#descripción-5)
+    - [🗄️ Crear Apartado Base Datos](#️-crear-apartado-base-datos)
+    - [📝**Código**](#código)
+    - [Visualizar Colecciones](#visualizar-colecciones)
+      - [📝**Comando**](#comando)
+      - [Explicacion Codigo](#explicacion-codigo)
+    - [Descripción Técnica](#descripción-técnica-4)
 - [🔗 Referencias](#-referencias)
 - [](#-9)
   - [👥 Desarrolladores](#-desarrolladores)
@@ -169,8 +190,6 @@ El sistema propuesto busca facilitar la gestión de hospitales, pacientes, perso
 ## 📚 Caso de Estudio
 
 - [Recurso Base](https://drive.google.com/file/d/1MqFQ7nI6pOwNBHwOSZjvmbwOalD-9zoG/view)
-
-En el entorno hospitalario actual, la gestión eficiente de la información médica es fundamental para garantizar la atención oportuna y precisa de los pacientes, muchos hospitales aún operan con registros físicos de sistemas fragmentados lo que genera demoras, la duplicación de datos y errores ya sean humanos.
     
 Los hospital no cuenta con un sistema centralizado que permita almacenar consultar y actualizar la información de sus pacientes médicos tratamientos y personas administrativa de forma eficiente esto ha provocado dificultades en la gestión de historiales clínicos control de visitas médicas y distribución de medicamentos
     
@@ -178,14 +197,41 @@ Nuestra propuesta es un diseño e implementación de una base de datos No SQL , 
     
 Tendremos en cuenta la gestión de las siguientes entidades que serán claves:
 
-- **Hospitales**: Información general de cada sede.
-- **Pacientes**: Datos personales, hospital asignado, historial clínico, visitas médicas.
-- **Médicos**: Especialidades, hospital asignado, pacientes atendidos.
-- **Visitas Médicas**: Registro de consultas, fecha, diagnóstico y médico tratante.
-- **Tratamientos y Medicamentos**: Información de los tratamientos indicados y medicamentos administrados.
-- **Áreas Especializadas**: Departamento o servicio específico del hospital.
-- **Personal Administrativo**: Encargados de la gestión hospitalaria.
-- **Historiales Clínicos**: Evolución médica del paciente, vinculada a visitas y tratamientos.
+El sistema debe cumplir con las siguientes características estructurales y funcionales:
+
+##### Estructura del Sistema
+
+- Un hospital puede tener múltiples áreas especializadas.
+- Cada hospital tiene un director general, que puede supervisar varios hospitales.
+- Cada hospital cuenta con médicos, enfermeros y personal administrativo.
+- Se debe mantener el historial de pacientes y tratamientos realizados.
+
+##### Pacientes
+
+- Identificados por historia clínica, nombre, dirección, teléfono, correo y seguros médicos.
+- Los historiales clínicos registran diagnósticos, tratamientos y resultados.
+
+##### Médicos y Personal
+
+- Los médicos se identifican por número de colegiatura, nombre, especialidad, teléfono, correo y salario.
+- Tipos de personal definidos:
+  - 001: Director General
+  - 002: Médico Especialista
+  - 003: Enfermero/a
+  - 004: Personal Administrativo
+  - 005: Personal de Mantenimiento
+
+##### Tratamientos y Medicamentos
+
+- Tratamientos con nombre, descripción, área médica y costo.
+- Medicamentos registrados por nombre, tipo, fabricante e inventario disponible.
+
+##### Visitas Médicas
+
+- Registran fecha, hora, médico asignado, paciente atendido y diagnóstico.
+- Un paciente puede tener varias visitas médicas a lo largo del tiempo.
+
+
 
 Usaremos MongoDB ya que nos permite almacenar datos de manera flexible lo que es ideal para manejar documentos clínicos que pueden variar en estructuras según el paciente o especialidad , además de su capacidad de escalabilidad en sistemas hospitalarios que pueden crecer con el tiempo.
 
@@ -218,11 +264,13 @@ Un aspecto clave fue unificar la gestión del personal en una sola colección (p
 
 Las relaciones entre especialidades, tratamientos y medicamentos también fueron cuidadosamente mapeadas para garantizar una segmentación lógica y detallada que permita analizar la operación del hospital por áreas médicas. Este diseño se realizó considerando la integración fluida de todos los componentes y dejando la estructura lista para escalar e integrar nuevas funcionalidades.
 
-<br>
+<br><br>
 
 <details>
   <summary><strong> 🧰 Estructura del seguimiento a hacer para nuestro modelo conceptual </strong></summary>
-  
+
+  <br>
+
 ## 📁 Estructura Modelo Conceptual
 
 ### 1. 🏥 `hospitales`
@@ -842,8 +890,15 @@ El hospital es el núcleo relacional, al que se asocian otras entidades mediante
 
 También se definieron relaciones como la que existe entre un historial clínico y sus tratamientos, o entre una visita médica y el médico responsable, estableciendo un flujo informativo que permite reconstruir con precisión el recorrido clínico del paciente.
 
+- Una tabla está en 1FN si cumple con los siguientes criterios:
 
-<br>
+- Todos los atributos contienen valores atómicos (indivisibles).
+
+- No debe haber grupos repetitivos de columnas.
+
+- Cada columna debe contener un solo valor en cada fila.
+
+<br><br>
 
 ## 📈 Gráfica
 
@@ -987,7 +1042,7 @@ erDiagram
     }
 ```
 
-<br>
+<br><br>
 
 ### Descripción Técnica
 
@@ -1008,16 +1063,16 @@ En esta etapa del diseño, aplicamos el proceso de normalización al modelo lóg
 A pesar de trabajar con una base NoSQL como MongoDB, aplicamos los principios de normalización clásicos de bases de datos relacionales como una guía metodológica que refuerza la claridad y la organización interna del modelo lógico antes de traducirlo al modelo físico documental.
 
 
-<br>
+<br><br>
 
-### 1️⃣ Primera Forma Normal (1FN)
+## 1️⃣ Primera Forma Normal (1FN)
 
 La Primera Forma Normal busca eliminar los grupos repetitivos dentro de una misma entidad, asegurando que cada campo contenga solo valores atómicos y que no existan columnas que almacenen múltiples valores o estructuras anidadas que generen ambigüedad en la lectura o manipulación de los datos. Esta etapa es fundamental, ya que establece las bases para una estructura limpia, donde cada atributo representa una sola información por fila, evitando duplicidades internas y facilitando su posterior análisis o consulta.
 
 
-<br>
+<br><br>
 
-#### Descripción
+### Descripción
 
 Durante la revisión del modelo lógico, identificamos ciertas entidades que inicialmente contenían arreglos o estructuras no atómicas, como listas de tratamientos dentro de un historial clínico, medicamentos dentro de un tratamiento, o múltiples áreas asignadas directamente en el hospital. En el proceso de adaptación a la 1FN, se tomó la decisión de separar estas agrupaciones en colecciones independientes o referenciadas, garantizando que cada documento representara una única instancia de información. Por ejemplo, en lugar de almacenar todos los medicamentos como un array dentro del tratamiento, se transformaron en documentos individuales relacionados mediante ObjectId. De esta manera, cada entidad mantiene una estructura clara y alineada con los principios de atomicidad de datos.
 
@@ -1148,9 +1203,9 @@ erDiagram
         string descripcion
     }
 ```
-<br>
+<br><br>
 
-#### Descripción Técnica
+### Descripción Técnica
 
 Técnicamente, para cumplir con la Primera Forma Normal, nos aseguramos de que todos los atributos definidos en cada colección tuvieran un único valor por registro, evitando campos tipo array cuando estos representaban datos que podían crecer o cambiar dinámicamente. 
 
@@ -1162,14 +1217,15 @@ Esta decisión también facilitó la implementación posterior de índices y fil
 
 <br><br>
  
-### 2️⃣ Segunda Forma Normal (2FN)
+## 2️⃣ Segunda Forma Normal (2FN)
 
 La Segunda Forma Normal tiene como objetivo eliminar la dependencia parcial de atributos respecto a claves primarias compuestas. En otras palabras, busca que todos los campos de una tabla o colección dependan completamente de la clave primaria y no solo de una parte de ella. 
 
 Este principio es especialmente útil en estructuras donde una clave está compuesta por más de un campo, situación que puede provocar redundancia de datos o inconsistencias si no se maneja adecuadamente. Aunque MongoDB no utiliza claves compuestas de forma tradicional, seguimos este principio para asegurar la cohesión lógica de cada documento y evitar atributos que dependan parcialmente de identificadores múltiples.
 
+<br>
 
-#### Descripción
+### Descripción
 
 Durante el análisis del modelo lógico, identificamos entidades donde existía dependencia parcial, especialmente en aquellos documentos donde se almacenaban atributos que estaban relacionados solo con una parte del contexto. 
 
@@ -1314,7 +1370,7 @@ HOSPITALES ||--o{ AREAS_ESPECIALIZADAS : tiene
 
 
 
-#### Descripción Técnica
+### Descripción Técnica
 
 Para garantizar el cumplimiento de la Segunda Forma Normal, revisamos las entidades que incluían referencias cruzadas o información contextual duplicada. Se reestructuraron los documentos eliminando campos que no dependían completamente del identificador del documento. 
 
@@ -1326,14 +1382,15 @@ En términos de MongoDB, esto se tradujo en colecciones más limpias, enfocadas 
 
 <br><br>
 
-### 3️⃣ Tercera Forma Normal (3FN)
+## 3️⃣ Tercera Forma Normal (3FN)
 
 Nos enfocamos en eliminar las dependencias transitivas dentro de una entidad, es decir, asegurar que todos los atributos no clave dependan exclusivamente de la clave primaria y no de otros atributos no clave. 
 
 Este principio busca evitar que la información se repita innecesariamente y mejorar la coherencia semántica del modelo. Aunque MongoDB no requiere este tipo de normalización de forma estricta debido a su naturaleza documental, aplicarla conceptualmente refuerza la integridad del diseño lógico previo a su implementación física.
 
+<br>
 
-#### Descripción
+### Descripción
 
 Al analizar el modelo lógico con base en el nuevo diagrama ER, identificamos varios casos donde se presentaban dependencias transitivas. Por ejemplo, en la entidad personal, atributos como el nombre del rol o la especialidad médica dependían de idRol e idEspecialidad respectivamente, y no del identificador principal del documento (idPersonal). 
 
@@ -1343,7 +1400,7 @@ Esta reestructuración eliminó la dependencia de atributos entre sí y aseguró
 
 
 
-<br>
+<br><br>
 
 ## 📈 Gráfica
 ```mermaid
@@ -1577,9 +1634,9 @@ erDiagram
 ```
 
 
-<br>
+<br><br>
 
-#### Descripción Técnica
+### Descripción Técnica
 
 Para aplicar correctamente la Tercera Forma Normal en este modelo, fragmentamos entidades que contenían campos con dependencias indirectas, y los trasladamos a colecciones especializadas con sus respectivos ObjectId.
 
@@ -1595,7 +1652,9 @@ Esta separación lógica permite mantener una alta cohesión dentro de cada cole
 
 <details>
   <summary><strong> 🧰 Estructura del Modelo Finalizado de la Normalizacion </strong></summary>
-  
+
+  <br>
+
 ## 📁 Estructura Modelo Final Normalizacion
 
 ---
@@ -1891,58 +1950,586 @@ Representa los hospitales del sistema.
 
 </details>
 
+<br><br>
 
-
-#### Explicacion 
+### Explicacion 
 
 Para la estructura finalizada de la normalizacion implementamos las `referencias` para guiarnos en el momento de aplicarlo al modelo fisico , de igual manera entregamos la estructura visual de los atributos para que el usuario se relacione al momento de ejecutar en el siguiente modelo.
 
+<br><br>
 
 ## 🏗 Construcción del Modelo Físico
 
+En esta etapa final del diseño de la base de datos, trasladamos toda la estructura definida en el modelo lógico a una implementación concreta en MongoDB. Se utilizó un enfoque basado en colecciones con validación mediante jsonSchema, lo que permite garantizar la integridad estructural de los datos desde el momento de su inserción. 
 
-
-#### Descripción
-
-
-
-<br>
-
-#### 📝**Código**
-
-
-
-<br>
-
-#### Descripción Técnica
-
-
-
-
-## 📋 Inserción de Datos
-
-
-
-<br>
-
-##### Descripción
-
-
-
-<br>
-
-## 📈 Gráfica
-
-
-
-<br>
-
-##### Descripción Técnica
-
-
-
+Esta capa es esencial para asegurar que cada entidad cumpla con la forma esperada y se mantenga coherente con el resto del sistema.
 
 <br><br>
+
+### Descripción
+
+Se definieron múltiples colecciones que reflejan las entidades principales del entorno hospitalario: 
+
+- hospitales, pacientes, personal, tratamientos, medicamentos, facturas, visitas, entre otras. 
+  
+A cada colección se le asignaron validaciones específicas que establecen que campos son obligatorios y qué tipo de datos se esperan. Esto evita registros incompletos, duplicados o inconsistentes. 
+
+También se incluyeron colecciones complementarias como roles, especialidades médicas, fabricantes o reacciones adversas, que permiten segmentar la información y mejorar su trazabilidad dentro del sistema. 
+
+La estructura facilita futuras consultas, relaciones entre documentos y una gestión ordenada de cada módulo.
+
+<br>
+
+
+### 🗄️ Crear Apartado Base Datos
+
+En este apartado se define la base de datos principal del sistema hospitalario. Utilizamos el comando `use` para seleccionar o crear la base de datos llamada `sistema_hospitalario`, donde se almacenarán todas las colecciones que conforman la estructura del modelo hospitalario.
+
+```
+use sistema_hospitalario
+```
+
+<br>
+
+A continuación se definen las colecciones que compondrán la base de datos `sistema_hospitalario`. Cada colección representa una entidad del sistema, como hospitales, pacientes, personal médico, entre otros, y se crean con sus respectivas validaciones mediante `jsonSchema` para asegurar la integridad de los datos.
+
+<br><br>
+
+### 📝**Código**
+
+```
+
+//Crear Colecciones
+
+// COLECCIÓN HOSPITALES: Representa a los hospitales que forman parte del sistema.
+
+db.createCollection("hospitales",{
+    validator:{
+        jsonSchema:{
+            bsonType: "Object",
+            required:["_id","nombre","ubicacion","telefono"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                ubicacion:{bsonType:"string"},
+                telefono:{bsonType:"int"}
+            }
+        }
+    }
+}
+)
+
+
+// COLECCIÓN AREAS ESPECIALIZADAS: Contiene las áreas médicas disponibles en cada hospital.
+
+db.createCollection("areasEspecializadas",{
+    validator:{
+        jsonSchema:{
+            bsonType: "Object",
+            required:["_id","nombre","descripcion","idHospital"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                descripcion:{bsonType:"string"},
+                idHospital:{bsonType:"int"}
+            }
+        }
+    }
+}
+)
+
+
+// COLECCIÓN PACIENTES: Registra a los pacientes que reciben atención en los hospitales.
+
+db.createCollection("pacientes",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre","direccion","telefono","correo","numeroHistoriaClinica","idSeguro","idHospital"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                direccion:{bsonType:"string"},
+                telefono:{bsonType:"int"},
+                correo:{bsonType:"string"},
+                numeroHistoriaClinica:{bsonType:"int"},
+                idSeguro:{bsonType:"int"},
+                idHospital:{bsonType:"int"}
+            }
+        }
+    }
+}
+)
+
+
+// COLECCIÓN SEGUROS MÉDICOS: Almacena información sobre los seguros afiliados a los pacientes.
+
+db.createCollection("segurosMedicos",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre","compañia","idTipoSeguro"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                compañia:{bsonType:"string"},
+                idTipoSeguro:{bsonType:"string"}
+                }
+            }
+        }
+    }
+)
+
+
+// COLECCIÓN TIPOS DE SEGURO: Describe las características y condiciones de cada tipo de seguro médico.
+
+db.createCollection("tiposSeguros",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre","cobertura","numeroPoliza","vigenciaInicio","vigenciaFinal","condiciones","idEntidadAseguradora"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                cobertura:{bsonType:"string"},
+                numeroPoliza:{bsonType:"int"},
+                vigenciaInicio:{bsonType:"date"},
+                vigenciaFinal:{bsonType:"date"},
+                condiciones:{bsonType:"string"},
+                idEntidadAseguradora:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+
+// COLECCIÓN ENTIDADES ASEGURADORAS: Representa a las compañías que ofrecen los seguros médicos.
+
+db.createCollection("entidadAseguradora",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre","afiliacion","ubicacion","telefono","correo","fechaRegistro"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                afiliacion:{bsonType:"string"},
+                ubicacion:{bsonType:"string"},
+                telefono:{bsonType:"int"},
+                correo:{bsonType:"string"},
+                fechaRegistro:{bsonType:"date"}
+            }
+        }
+    }
+})
+
+
+// COLECCIÓN ESTADO DE SEGURO: Detalla el estado actual, vigencia y prioridad de un seguro.
+
+db.createCollection("estadoSeguro",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","estado","fechaCreacion","prioridad","vencimiento"],
+            properties:{
+                _id:{bsonType:"int"},
+                estado:{bsonType:"string"},
+                fechaCreacion:{bsonType:"date"},
+                prioridad:{bsonType:"string"},
+                vencimiento:{bsonType:"date"}
+            }
+        }
+    }
+})
+
+
+// COLECCIÓN HISTORIALES CLÍNICOS: Guarda el registro de las consultas, diagnósticos y resultados por paciente.
+
+db.createCollection("historialesClinicos",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","motivoCOnsulta","diagnostico","fecha","idPaciente","idResultados","idArea"],
+            properties:{
+                _id:{bsonType:"int"},
+                motivoCOnsulta:{bsonType:"string"},
+                diagnostico:{bsonType:"string"},
+                fecha:{bsonType:"date"},
+                idPaciente:{bsonType:"int"},
+                idResultados:{bsonType:"int"},
+                idArea:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+
+// COLECCIÓN RESULTADOS: Contiene los resultados de pruebas o tratamientos asignados a un paciente.
+
+db.createCollection("resultados",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre","descripcion","planTrataiento","duracionEstimada","costo","idArea"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                descripcion:{bsonType:"string"},
+                planTrataiento:{bsonType:"string"},
+                duracionEstimada:{bsonType:"int"},
+                costo:{bsonType:"int"},
+                idArea:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+
+// COLECCIÓN TRATAMIENTOS: Define los tratamientos disponibles en el hospital.
+
+db.createCollection("tratamientos",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre","descripcion","planTratamiento","duracionEstimada","costo","idArea"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                descripcion:{bsonType:"string"},
+                duracionEstimada:{bsonType:"int"},
+                costo:{bsonType:"int"},
+                idArea:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+
+// COLECCIÓN MEDICAMENTOS: Registra los medicamentos disponibles y sus características principales.
+
+db.createCollection("medicamentos",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre","dosisEstandar","frecuencia","inventario","idFabricante","idHospital","idReaccionAdversa"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                dosisEstandar:{bsonType:"string"},
+                frecuencia:{bsonType:"string"},
+                inventario:{bsonType:"int"},
+                idFabricante:{bsonType:"int"},
+                idHospital:{bsonType:"int"},
+                idReaccionAdversa:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+
+// COLECCIÓN MEDICAMENTOS - REACCIÓN ADVERSA: Relaciona los medicamentos con las reacciones adversas que pueden provocar.
+
+db.createCollection("medicamentosReaccionAdversa",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","idReacciones"],
+            properties:{
+                _id:{bsonType:"int"},
+                idReacciones:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+
+// COLECCIÓN REACCIONES ADVERSAS: Enumera posibles efectos secundarios o reacciones por el uso de medicamentos.
+
+db.createCollection("reaccionesAdversas",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre","gravedad","descripcion"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                gravedad:{bsonType:"string"},
+                descripcion:{bsonType:"string"}
+            }
+        }
+    }
+})
+
+
+// COLECCIÓN FABRICANTES: Guarda los datos de los fabricantes de medicamentos registrados.
+
+db.createCollection("fabricantes",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre","paisOrigen","telefono","direccion","estado"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                paisOrigen:{bsonType:"string"},
+                telefono:{bsonType:"int"},
+                direccion:{bsonType:"string"},
+                estado:{bsonType:"string"}
+            }
+        }
+    }
+})
+
+
+// COLECCIÓN TRATAMIENTOS ASIGNADOS: Registra los tratamientos administrados a un paciente, junto a su personal responsable.
+
+db.createCollection("tratamientosAsignados",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","idHistorial","idTratamiento","idMedicamento","fechaAplicacion","observaciones","idPersonalMedico","idPersonalEnfermero"],
+            properties:{
+                _id:{bsonType:"int"},
+                idHistorial:{bsonType:"int"},
+                idTratamiento:{bsonType:"int"},
+                idMedicamento:{bsonType:"int"},
+                fechaAplicacion:{bsonType:"date"},
+                observaciones:{bsonType:"string"},
+                idPersonalMedico:{bsonType:"int"},
+                idPersonalEnfermero:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+
+// COLECCIÓN VISITAS MÉDICAS: Contiene información de las visitas realizadas por los pacientes al hospital.
+
+db.createCollection("visitasMedicas",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","fecha","motivo","diagnostico","idPaciente","idPersonalMedico","idPersonalEnfermero"],
+            properties:{
+                _id:{bsonType:"int"},
+                fecha:{bsonType:"date"},
+                motivo:{bsonType:"string"},
+                diagnostico:{bsonType:"string"},
+                idPaciente:{bsonType:"int"},
+                idPersonalMedico:{bsonType:"int"},
+                idPersonalEnfermero:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+
+// COLECCIÓN PERSONAL: Registra al personal del hospital, incluyendo médicos, enfermeros y administrativos.
+
+db.createCollection("personal",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre","telefono","correo","salario","idHospital","idRol","idEspecialidad"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                telefono:{bsonType:"int"},
+                correo:{bsonType:"string"},
+                salario:{bsonType:"int"},
+                idHospital:{bsonType:"int"},
+                idRol:{bsonType:"int"},
+                idEspecialidad:{bsonType:"int"}
+            }
+        }
+    }
+}
+)
+
+
+// COLECCIÓN COLEGIATURAS: Almacena la validación profesional del personal médico con su número de colegiatura.
+
+db.createCollection("colegiaturas",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","numero","personal"],
+            properties:{
+                _id:{bsonType:"int"},
+                fechaPago:{bsonType:"date"},
+                monto:{bsonType:"int"},
+                idSeguro:{bsonType:"int"}
+            }
+        }
+    }
+}
+)
+
+
+// COLECCIÓN ESPECIALIDADES MÉDICAS: Lista las distintas especialidades médicas que puede tener el personal.
+
+db.createCollection("especialidadesMedicas",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"}
+            }
+        }
+    }
+})
+
+
+// COLECCIÓN ROLES: Describe los diferentes roles del personal dentro del hospital (médico, enfermero, administrativo...).
+
+db.createCollection("roles",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre","descripcion"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                descripcion:{bsonType:"string"}
+            }
+        }
+    }
+})
+
+
+// COLECCIÓN HORARIOS: Define los horarios de trabajo del personal hospitalario.
+
+db.createCollection("horarios",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","dia","horaInicio","horaFin","idPersonal"],
+            properties:{
+                _id:{bsonType:"int"},
+                dia:{bsonType:"string"},
+                horaInicio:{bsonType:"string"},
+                horaFin:{bsonType:"string"},
+                idPersonal:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+
+// COLECCIÓN CITAS: Registra las citas médicas programadas entre pacientes y personal.
+
+db.createCollection("citas",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","fecha","hora","motivo","idPaciente","idPersonal","idHospital"],
+            properties:{
+                _id:{bsonType:"int"},
+                fecha:{bsonType:"date"},
+                hora:{bsonType:"string"},
+                motivo:{bsonType:"string"},
+                idPaciente:{bsonType:"int"},
+                idPersonal:{bsonType:"int"},
+                idHospital:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+
+// COLECCIÓN ESTADO: Indica las etapas o estados que puede atravesar una cita, tratamiento o paciente.
+
+db.createCollection("estado",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","etapaEstado","descripcion"],
+            properties:{
+                _id:{bsonType:"int"},
+                etapaEstado:{bsonType:"string"},
+                descripcion:{bsonType:"string"}
+            }
+        }
+    }
+})
+
+
+// COLECCIÓN FACTURAS: Contiene la información de facturación por servicios prestados.
+
+db.createCollection("facturas",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","fechaEmision","total","metodoPagos","idPaciente","idHospital"],
+            properties:{
+                _id:{bsonType:"int"},
+                fecha:{bsonType:"date"},
+                total:{bsonType:"int"},
+                idPaciente:{bsonType:"int"},
+                idSeguro:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+
+// COLECCIÓN PAGOS: Registra los pagos efectuados por parte de los pacientes o aseguradoras.
+
+db.createCollection("pagos",{
+    validator:{
+        jsonSchema:{
+            bsonType:"object",
+            required:["_id","fechaPago","monto","metodo"],
+            properties:{
+                _id:{bsonType:"int"},
+                fechaPago:{bsonType:"date"},
+                monto:{bsonType:"int"},
+                idFactura:{bsonType:"int"}
+            }
+        }
+    }
+})
+```
+
+<br>
+
+### Visualizar Colecciones
+
+Una vez creadas todas las colecciones dentro de la base de datos `sistema_hospitalario`, podemos visualizar el listado completo utilizando el siguiente comando en la consola de MongoDB:
+
+#### 📝**Comando**
+
+```
+show collections
+```
+
+<br><br>
+
+#### Explicacion Codigo 
+
+En cada `db.createCollection()` especificamos un jsonSchema con los atributos obligatorios y sus tipos, como string, int o date, según la condicion de cada dato. 
+
+Por ejemplo, en la colección pacientes definimos campos como nombre, correo, numeroHistoriaClinica, así como referencias lógicas a seguros y hospitales. Este enfoque nos permitió establecer reglas desde el principio que previenen errores, duplicidades o inserciones incompletas. 
+
+A su vez, las referencias entre entidades se expresaron por medio de campos como idPaciente, idTratamiento o idPersonal, lo que mantiene la estructura relacional dentro de un modelo documental.
+
+<br><br>
+
+### Descripción Técnica
+
+Iniciamos dando inicio la implementacion de cada colección utilizando el método `db.createCollection()` en MongoDB, incorporando validadores jsonSchema para definir la estructura y restricciones de cada documento. 
+
+Usamos identificadores numéricos (_id de tipo int) para facilitar el control referencial y optimizar el rendimiento en búsquedas. Las relaciones entre colecciones, aunque no se manejan mediante claves foráneas como en bases de datos relacionales, se simularon a través de campos como idHospital, idPaciente, idEspecialidad, que actúan como referencias cruzadas. 
+
+Esta configuración nos permite mantener la integridad de los datos, controlar la entrada de información y preparar el sistema para una posible indexación futura. El resultado es un modelo físico coherente, estructurado y preparado para escalar dentro del entorno hospitalario propuesto.
+
+
+<br>
+<br>
+<br>
+
 
 
 # 🔗 Referencias
@@ -1952,17 +2539,18 @@ Para la estructura finalizada de la normalizacion implementamos las `referencias
 - [sistema de gestión hospitalaria](https://www.aalpha.net/blog/how-to-build-a-hospital-management-system/)
 
 #
+
 <br>
 
 ## 👥 Desarrolladores
 
-- [@Danny200523](https://github.com/Danny200523)
-- [@AuraCamilaPicoAraque](https://github.com/AuraCamilaPicoAraque)
+[![Danny200523](https://img.shields.io/badge/GitHub-Danny200523-181717?style=for-the-badge&logo=github)](https://github.com/Danny200523)
+[![AuraCamilaPicoAraque](https://img.shields.io/badge/GitHub-AuraCamilaPicoAraque-181717?style=for-the-badge&logo=github)](https://github.com/AuraCamilaPicoAraque)
+
 
 <br>
 
 ## 🛠 Herramientas de Desarrollo
-
 
 
 <p  align="center">
