@@ -812,3 +812,12 @@
     
 
 //100. **AGREGACIÓN 24: Contar pacientes únicos por médico.**
+
+db.visitasMedicas.aggregate([
+    { $group: { _id: { medico: "$idPersonalMedico", paciente: "$idPaciente" } } },
+    { $group: { _id: "$_id.medico", pacientesUnicos: { $sum: 1 } } },
+    { $lookup: { from: "personal", localField: "_id", foreignField: "_id", as: "medicoInfo" } },
+    { $unwind: "$medicoInfo" },
+    { $project: { _id: 0, nombreMedico: "$medicoInfo.nombre", cantidadPacientesAtendidos: "$pacientesUnicos" } },
+    { $sort: { cantidadPacientesAtendidos: -1 } }
+  ]);
