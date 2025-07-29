@@ -714,9 +714,9 @@
 
 
     db.citas.aggregate([
-      { $match: { fecha: new Date('2025-08-20') } },
+      { $match: { fecha: '2025-01-25T00:00:00.000Z' } },
       { $group: { _id: "$idPersonal", cantidadCitas: { $sum: 1 } } },
-      { $sort: { cantidadCitas: -1 } },
+      { $sort: { cantidadCitas: 1 } },
       { $limit: 1 }
     ]);
     
@@ -737,18 +737,18 @@
 
 
     // Asumiendo un campo `fechaEmision`
-    // db.facturas.aggregate([
-    //   { $match: { fechaEmision: new Date('2025-07-28') } },
-    //   { $group: { _id: null, totalDiario: { $sum: "$total" } } }
-    // ]);
+    db.facturas.aggregate([
+      { $match: { fechaEmision: '2025-05-21T00:00:00.000Z' } },
+      { $group: { _id: null, totalDiario: { $sum: "$total" } } }
+    ]);
     
 
-//93. **Listar pacientes con más de 5 visitas médicas.**
+//93. **Listar pacientes con menos de 5 visitas médicas.**
 
 
     db.visitasMedicas.aggregate([
       { $group: { _id: "$idPaciente", count: { $sum: 1 } } },
-      { $match: { count: { $gt: 5 } } }
+      { $match: { count: { $lt: 5 } } }
     ]);
     
 
@@ -774,17 +774,40 @@
     
 
 //96. **Costo total de tratamientos para un diagnóstico.**
-
-
-    db.historialesClinicos.aggregate([
-      { $match: { diagnostico: "Fractura de radio" } },
-      { $lookup: { from: "tratamientosAsignados", localField: "_id", foreignField: "idHistorial", as: "asignados" } },
-      { $unwind: "$asignados" },
-      { $lookup: { from: "tratamientos", localField: "asignados.idTratamiento", foreignField: "_id", as: "tratamientoInfo" } },
-      { $unwind: "$tratamientoInfo" },
-      { $group: { _id: "$diagnostico", costoTotalEstimado: { $sum: "$tratamientoInfo.costo" } } }
-    ]);
     
+    db.historialesClinicos.aggregate([
+        {
+          $match: {
+            diagnostico: "Dolor torácico"
+          }
+        },
+        {
+          $lookup: {
+            from: "tratamientosAsignados",
+            localField: "_id",
+            foreignField: "idHistorial",
+            as: "tratamientosAsignados"
+          }
+        },
+        { $unwind: "$tratamientosAsignados" },
+        {
+          $lookup: {
+            from: "tratamientos",
+            localField: "tratamientosAsignados.idTratamiento",
+            foreignField: "_id",
+            as: "tratamientoInfo"
+          }
+        },
+        { $unwind: "$tratamientoInfo" },
+        {
+          $group: {
+            _id: "$diagnostico",
+            costoTotalTratamientos: { $sum: "$tratamientoInfo.costo" },
+            cantidadTratamientos: { $sum: 1 }
+          }
+        }
+      ]);
+      
 
 //97. **Estadísticas de visitas por mes.**
 
@@ -799,7 +822,7 @@
 //98. **Ver citas con motivo "Consulta General".**
 
 
-    db.citas.find({ motivo: "Consulta General" });
+    db.citas.find({ motivo: /Revision Postoperatoria/i });
     
 
 //99. **Listar pacientes y fecha de su última visita.**
