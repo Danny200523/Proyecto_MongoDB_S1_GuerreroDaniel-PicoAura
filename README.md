@@ -2555,20 +2555,6 @@ Esta configuración nos permite mantener la integridad de los datos, controlar l
 
 </div>
 
-
-<br>
-
-## 🛠 Herramientas de Desarrollo
-
-
-<p  align="center">
-
-<img  src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDVhaGg5bWczaWI2eTNwcHI0dGRmZ3NkdzB5MDljemc3eXhwcnZociZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/tAjb5pyCEBhEb8jWxC/giphy.gif"  alt="Funny Coding Gif"  width="150"/>
-
-<h3 align="center"> MongoDB ~ </h3>
-
-</p>
-
 <br>
 
 <br>
@@ -2649,3 +2635,19 @@ Si tienes dudas, sugerencias o encuentras algún problema con la implementación
 > *¡Gracias por revisar nuestro proyecto del Sistema Hospitalario! Tu feedback es siempre bienvenido.* 🏥💻
 
 ---
+
+
+<br>
+
+## 🛠 Herramientas de Desarrollo
+
+
+<p  align="center">
+
+<img  src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDVhaGg5bWczaWI2eTNwcHI0dGRmZ3NkdzB5MDljemc3eXhwcnZociZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/tAjb5pyCEBhEb8jWxC/giphy.gif"  alt="Funny Coding Gif"  width="150"/>
+
+<h3 align="center"> MongoDB ~ </h3>
+
+</p>
+
+<br>
