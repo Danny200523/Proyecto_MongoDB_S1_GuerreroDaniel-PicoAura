@@ -1,0 +1,421 @@
+// Crear Base de Datos
+
+// use sistema_hospitalario
+
+//Crear Colecciones
+
+db.createCollection("hospitales",{
+    validator:{
+        $jsonSchema:{
+            bsonType: "object",
+            required:["_id","nombre","ubicacion","telefono"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                ubicacion:{bsonType:"string"},
+                telefono:{bsonType:"string"}
+            }
+        }
+    }
+}
+)
+
+db.createCollection("areasEspecializadas",{
+    validator:{
+        $jsonSchema:{
+            bsonType: "object",
+            required:["_id","nombre","descripcion","idHospital"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                descripcion:{bsonType:"string"},
+                idHospital:{bsonType:"int"}
+            }
+        }
+    }
+}
+)
+
+db.createCollection("pacientes",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre","direccion","telefono","correo","numeroHistoriaClinica","idSeguro","idHospital"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                direccion:{bsonType:"string"},
+                telefono:{bsonType:"string"},
+                correo:{bsonType:"string"},
+                numeroHistoriaClinica:{bsonType:"int"},
+                idSeguro:{bsonType:"int"},
+                idHospital:{bsonType:"int"}
+            }
+        }
+    }
+}
+)
+
+db.createCollection("segurosMedicos",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre","compañia","idTipoSeguro"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                compañia:{bsonType:"string"},
+                idTipoSeguro:{bsonType:"string"}
+                }
+            }
+        }
+    }
+)
+
+db.createCollection("tiposSeguros",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre","cobertura","numeroPoliza","vigenciaInicio","vigenciaFinal","condiciones","idEntidadAseguradora"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                cobertura:{bsonType:"string"},
+                numeroPoliza:{bsonType:"int"},
+                vigenciaInicio:{bsonType:"date"},
+                vigenciaFinal:{bsonType:"date"},
+                condiciones:{bsonType:"string"},
+                idEntidadAseguradora:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+db.createCollection("entidadAseguradora",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre","afiliacion","ubicacion","telefono","correo","fechaRegistro"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                afiliacion:{bsonType:"string"},
+                ubicacion:{bsonType:"string"},
+                telefono:{bsonType:"string"},
+                correo:{bsonType:"string"},
+                fechaRegistro:{bsonType:"date"}
+            }
+        }
+    }
+})
+
+db.createCollection("estadoSeguro",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","estado","fechaCreacion","prioridad","vencimiento"],
+            properties:{
+                _id:{bsonType:"int"},
+                estado:{bsonType:"string"},
+                fechaCreacion:{bsonType:"date"},
+                prioridad:{bsonType:"string"},
+                vencimiento:{bsonType:"date"}
+            }
+        }
+    }
+})
+
+db.createCollection("historialesClinicos",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","motivoConsulta","diagnostico","fecha","idPaciente","idResultados","idArea"],
+            properties:{
+                _id:{bsonType:"int"},
+                motivoConsulta:{bsonType:"string"},
+                diagnostico:{bsonType:"string"},
+                fecha:{bsonType:"date"},
+                idPaciente:{bsonType:"int"},
+                idResultados:{bsonType:"int"},
+                idArea:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+db.createCollection("resultados",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","tipoExamen","fecha","descripcion","profesionalAsignado"],
+            properties:{
+                _id:{bsonType:"int"},
+                tipoExamen:{bsonType:"string"},
+                fecha:{bsonType:"date"},
+                descripcion:{bsonType:"string"},
+                profesionalAsignado:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+db.createCollection("tratamientos",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre","descripcion","planTratamiento","duracionEstimada","costo","idArea"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                descripcion:{bsonType:"string"},
+                planTratamiento:{bsonType:"string"},
+                duracionEstimada:{bsonType:"int"},
+                costo:{bsonType:"int"},
+                idArea:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+db.createCollection("medicamentos",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre","dosisEstandar","frecuencia","inventario","idFabricante","idHospital","idReaccionAdversa"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                dosisEstandar:{bsonType:"string"},
+                frecuencia:{bsonType:"string"},
+                inventario:{bsonType:"int"},
+                idFabricante:{bsonType:"int"},
+                idHospital:{bsonType:"int"},
+                idReaccionAdversa:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+db.createCollection("medicamentosReaccionAdversa",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","idMedicamento","idReaccion"],
+            properties:{
+                _id:{bsonType:"int"},
+                idReaccion:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+db.createCollection("reaccionesAdversas",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre","gravedad","descripcion"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                gravedad:{bsonType:"string"},
+                descripcion:{bsonType:"string"}
+            }
+        }
+    }
+})
+
+db.createCollection("fabricantes",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre","paisOrigen","telefono","direccion","estado"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                paisOrigen:{bsonType:"string"},
+                telefono:{bsonType:"string"},
+                direccion:{bsonType:"string"},
+                estado:{bsonType:"string"}
+            }
+        }
+    }
+})
+
+db.createCollection("tratamientosAsignados",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","idHistorial","idTratamiento","idMedicamento","fechaAplicacion","observaciones","idPersonalMedico","idPersonalEnfermero"],
+            properties:{
+                _id:{bsonType:"int"},
+                idHistorial:{bsonType:"int"},
+                idTratamiento:{bsonType:"int"},
+                idMedicamento:{bsonType:"int"},
+                fechaAplicacion:{bsonType:"date"},
+                observaciones:{bsonType:"string"},
+                idPersonalMedico:{bsonType:"int"},
+                idPersonalEnfermero:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+db.createCollection("visitasMedicas",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","fecha","motivo","diagnostico","idPaciente","idPersonalMedico","idPersonalEnfermero"],
+            properties:{
+                _id:{bsonType:"int"},
+                fecha:{bsonType:"date"},
+                motivo:{bsonType:"string"},
+                diagnostico:{bsonType:"string"},
+                idPaciente:{bsonType:"int"},
+                idPersonalMedico:{bsonType:"int"},
+                idPersonalEnfermero:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+db.createCollection("personal",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre","telefono","correo","salario","idHospital","idRol","idEspecialidad"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                telefono:{bsonType:"string"},
+                correo:{bsonType:"string"},
+                salario:{bsonType:"int"},
+                idHospital:{bsonType:"int"},
+                idRol:{bsonType:"int"},
+                idEspecialidad:{bsonType:"int"}
+            }
+        }
+    }
+}
+)
+
+db.createCollection("colegiaturas",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","numero","personal"],
+            properties:{
+                _id:{bsonType:"int"},
+                numero:{bsonType:"int"},
+                personal:{bsonType:"int"}
+            }
+        }
+    }
+}
+)
+
+db.createCollection("especialidadesMedicas",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"}
+            }
+        }
+    }
+})
+
+db.createCollection("roles",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","nombre","descripcion"],
+            properties:{
+                _id:{bsonType:"int"},
+                nombre:{bsonType:"string"},
+                descripcion:{bsonType:"string"}
+            }
+        }
+    }
+})
+
+db.createCollection("horarios",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","dia","horaInicio","horaFin","idPersonal"],
+            properties:{
+                _id:{bsonType:"int"},
+                dia:{bsonType:"string"},
+                horaInicio:{bsonType:"string"},
+                horaFin:{bsonType:"string"},
+                idPersonal:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+db.createCollection("citas",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","fecha","hora","motivo","idPaciente","idPersonal","idHospital"],
+            properties:{
+                _id:{bsonType:"int"},
+                fecha:{bsonType:"date"},
+                hora:{bsonType:"string"},
+                motivo:{bsonType:"string"},
+                idPaciente:{bsonType:"int"},
+                idPersonal:{bsonType:"int"},
+                idHospital:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+db.createCollection("estado",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","etapaEstado","descripcion"],
+            properties:{
+                _id:{bsonType:"int"},
+                etapaEstado:{bsonType:"string"},
+                descripcion:{bsonType:"string"}
+            }
+        }
+    }
+})
+
+db.createCollection("facturas",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","fechaEmision","total","metodoPagos","idPaciente","idHospital"],
+            properties:{
+                _id:{bsonType:"int"},
+                fecha:{bsonType:"date"},
+                total:{bsonType:"int"},
+                idPaciente:{bsonType:"int"},
+                idSeguro:{bsonType:"int"}
+            }
+        }
+    }
+})
+
+db.createCollection("pagos",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["_id","fechaPago","monto","metodo"],
+            properties:{
+                _id:{bsonType:"int"},
+                fechaPago:{bsonType:"date"},
+                monto:{bsonType:"int"},
+                idFactura:{bsonType:"int"}
+            }
+        }
+    }
+})
+
