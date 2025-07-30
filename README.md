@@ -47,6 +47,14 @@
 - [](#)
   - [Tabla de Contenidos](#tabla-de-contenidos)
   - [✅ Requisitos del Sistema](#-requisitos-del-sistema)
+  - [🧩 Instalación y Configuración](#-instalación-y-configuración)
+      - [🛠️ Requisitos Previos](#️-requisitos-previos)
+  - [⚙️ Paso a Paso](#️-paso-a-paso)
+      - [1️⃣ Crear la Base de Datos y Estructura](#1️⃣-crear-la-base-de-datos-y-estructura)
+      - [2️⃣ Cargar los Datos Iniciales](#2️⃣-cargar-los-datos-iniciales)
+      - [3️⃣ Crear Usuarios del Sistema](#3️⃣-crear-usuarios-del-sistema)
+      - [4️⃣ Ejecutar Funciones de Consulta](#4️⃣-ejecutar-funciones-de-consulta)
+      - [Verificación Final](#verificación-final)
 - [🏥 Sistema Hospitalario](#-sistema-hospitalario)
   - [Introducción](#introducción)
   - [📚 Caso de Estudio](#-caso-de-estudio)
@@ -135,9 +143,24 @@
       - [📝**Comando**](#comando)
       - [Explicacion Codigo](#explicacion-codigo)
     - [Descripción Técnica](#descripción-técnica-4)
+  - [🔧 Funciones para Consultas del Sistema](#-funciones-para-consultas-del-sistema)
+    - [🛠️ Ejemplos de Funcionalidad](#️-ejemplos-de-funcionalidad)
+    - [💻 Ejemplo de uso:](#-ejemplo-de-uso)
+        - [Resultado esperado:](#resultado-esperado)
+  - [👤 Implementación de Usuarios](#-implementación-de-usuarios)
+    - [🛠️ Datos de los usuarios registrados](#️-datos-de-los-usuarios-registrados)
+  - [👥 Características de los Usuarios](#-características-de-los-usuarios)
+    - [Explicacion a fondo](#explicacion-a-fondo)
+    - [🛠️ Ejemplo de uso en pruebas](#️-ejemplo-de-uso-en-pruebas)
 - [🔗 Referencias](#-referencias)
 - [](#-9)
   - [👥 Desarrolladores](#-desarrolladores)
+  - [🤝 Contribuciones](#-contribuciones)
+    - [👩‍💻 Aura Camila Pico Araque](#-aura-camila-pico-araque)
+    - [👨‍💻 Daniel Esteban Guerrero Quintero](#-daniel-esteban-guerrero-quintero)
+  - [📜 Licencia y Contacto](#-licencia-y-contacto)
+    - [👤 Aura Camila Pico Araque](#-aura-camila-pico-araque-1)
+    - [👤 Daniel Esteban Guerrero Quintero](#-daniel-esteban-guerrero-quintero-1)
   - [🛠 Herramientas de Desarrollo](#-herramientas-de-desarrollo)
 
 <br>
@@ -173,6 +196,134 @@ Para el desarrollo de nuestro **Sistema Hospitalario en MongoDB**, nosotros util
 
 <br>
 <br>
+
+## 🧩 Instalación y Configuración
+
+Para poner en marcha el sistema hospitalario, se requiere tener un entorno de base de datos MongoDB instalado y listo para ejecutar tanto la estructura como los datos del sistema. 
+
+A continuación, detallamos los pasos necesarios para configurar todo correctamente.
+
+<br>
+
+
+#### 🛠️ Requisitos Previos
+
+Antes de comenzar, asegúrate de tener instalado:
+
+- MongoDB Community Server
+
+- MongoDB Compass (opcional, para una vista gráfica)
+
+- Node.js (opcional, si se utilizará una interfaz o entorno con scripts JavaScript)
+
+- El archivo ddl.js con la creación de colecciones y validadores.
+
+- El archivo dml.json con datos de ejemplo (si se desea cargar información inicial).
+
+- El archivo dql_funciones.js con funciones para consultas frecuentes.
+
+<br><br>
+
+## ⚙️ Paso a Paso
+
+#### 1️⃣ Crear la Base de Datos y Estructura
+
+Ejecuta el archivo ddl.js dentro del entorno de MongoDB. Esto generará todas las colecciones necesarias, incluyendo validación de datos por esquema:
+
+```bash
+
+# Ingresar al shell de MongoDB
+mongo
+
+# Cambiar a la base de datos
+use sistema_hospitalario
+
+# Ejecutar el archivo con las colecciones y validadores
+load("ddl.js")
+```
+
+<br>
+
+---
+
+<br>
+
+
+#### 2️⃣ Cargar los Datos Iniciales
+
+Si tienes un archivo llamado dml.json con datos de prueba, puedes cargarlo usando mongoimport desde la terminal o consola:
+
+```bash
+mongoimport --db sistema_hospitalario --collection pacientes --file dml.json --jsonArray
+⚠️ Repite este proceso para cada colección (hospitales, medicamentos, personal, etc.) si tienes archivos JSON separados.
+```
+
+<br>
+
+---
+
+<br>
+
+
+#### 3️⃣ Crear Usuarios del Sistema
+
+Si estás utilizando autenticación en MongoDB, asegúrate de crear los usuarios y asignar sus roles. Puedes ejecutar estos comandos directamente en el shell:
+
+
+```js
+use sistema_hospitalario
+
+db.createUser({
+  user: "admin",
+  pwd: "admin123",
+  roles: [{ role: "dbOwner", db: "sistema_hospitalario" }]
+})
+```
+
+Este paso debe repetirse para cada usuario (medico, enfermero, etc.).
+
+<br>
+
+---
+
+<br>
+
+
+#### 4️⃣ Ejecutar Funciones de Consulta
+
+Las funciones que permiten consultar datos como historiales, tratamientos, áreas médicas y más están definidas en el archivo dql_funciones.js. Para usarlas:
+
+```bash
+# Abrir MongoDB Shell
+mongo
+
+# Cambiar a la base de datos
+use sistema_hospitalario
+
+# Cargar las funciones
+load("dql_funciones.js")
+
+# Ejecutar alguna función
+historialClinicoCompleto(1005)
+```
+---
+
+
+#### Verificación Final
+Para comprobar que todo está funcionando correctamente:
+
+Consulta las colecciones con db.nombreColeccion.find().pretty()
+
+Verifica que los usuarios se conecten con sus permisos usando:
+
+```bash
+mongo -u medico -p medico123 --authenticationDatabase sistema_hospitalario
+```
+
+
+<br>
+<br><br>
+
 
 #  🏥 Sistema Hospitalario 
 
@@ -2528,9 +2679,161 @@ Esta configuración nos permite mantener la integridad de los datos, controlar l
 
 <br>
 <br>
+
+
+## 🔧 Funciones para Consultas del Sistema
+
+Durante el desarrollo del sistema, implementamos un conjunto de funciones en JavaScript orientadas a facilitar la consulta de datos en MongoDB. Estas funciones simulan comportamientos frecuentes del sistema como búsquedas clínicas, visualización de información operativa, estadísticas administrativas o tareas de seguimiento.
+
+<br>
+Cada función encapsula una consulta específica que se puede ejecutar directamente en el entorno de MongoDB (por ejemplo, MongoDB Shell, Compass), usando agregaciones, filtros o búsquedas simples para optimizar el acceso a los datos.
+
+Estas funciones están organizadas por áreas del sistema (clínico, operativo, financiero) y reflejan interacciones reales del día a día hospitalario.
+
+<br><br>
+
+### 🛠️ Ejemplos de Funcionalidad
+
+- Función: `historialClinicoCompleto(idPaciente)`
+
+-> Esta función busca todos los historiales clínicos asociados a un paciente específico, utilizando su ID. Es útil para conocer el historial médico completo del paciente en un solo lugar, incluyendo motivo de consulta, diagnóstico y fecha.
+
+-> En especifico nos permite centralizar la historia médica de cada paciente. Esto es clave para médicos y enfermeros que deben consultar antecedentes antes de prescribir tratamientos o programar nuevas visitas. Además, puede servir para generar reportes clínicos o auditorías médicas internas.
+
+<br>
+
+### 💻 Ejemplo de uso:
+
+Esto retornara todos los registros clínicos del paciente con ID 1005, con sus respectivos diagnósticos, fechas, áreas especializadas involucradas y observaciones.
+
+```js
+historialClinicoCompleto(1005)
+```
+
+##### Resultado esperado:
+
+```js
+[
+  {
+    "_id": 301,
+    "motivoConsulta": "Dolor abdominal",
+    "diagnostico": "Gastritis crónica",
+    "fecha": "2024-03-15T00:00:00Z",
+    "idArea": 12,
+    "idPaciente": 1005
+  },
+  {
+    "_id": 308,
+    "motivoConsulta": "Fiebre alta",
+    "diagnostico": "Infección viral",
+    "fecha": "2024-06-02T00:00:00Z",
+    "idArea": 10,
+    "idPaciente": 1005
+  }
+]
+```
+
+
+<br>
 <br>
 
 
+## 👤 Implementación de Usuarios
+
+Creamos un conjunto de usuarios representativos de los perfiles más importantes dentro del entorno hospitalario. Cada usuario tiene un nombre de acceso y una contraseña asociada. 
+
+Aunque no se incluye un sistema completo de autenticación, esta implementación nos permite simular distintas funciones y probar el sistema desde diferentes perspectivas. La colección puede expandirse más adelante para incluir permisos, tokens de sesión o encriptación de contraseñas si se requiere mayor seguridad.
+
+
+### 🛠️ Datos de los usuarios registrados
+
+```
+[
+  {
+    "usuario": "admin",
+    "password": "admin123",
+    "rol": "Administrador"
+  },
+  {
+    "usuario": "medico",
+    "password": "medico123",
+    "rol": "Médico"
+  },
+  {
+    "usuario": "enfermero",
+    "password": "enfermero123",
+    "rol": "Enfermero"
+  },
+  {
+    "usuario": "mantenimiento",
+    "password": "mantenimiento123",
+    "rol": "Mantenimiento"
+  },
+  {
+    "usuario": "director",
+    "password": "director123",
+    "rol": "Director"
+  }
+]
+
+```
+<br><br>
+
+
+
+## 👥 Características de los Usuarios
+
+| Usuario        | Contraseña       | Rol MongoDB           | Descripción funcional                                                                 | Permisos asignados                                       |
+|----------------|------------------|------------------------|----------------------------------------------------------------------------------------|-----------------------------------------------------------|
+| `admin`        | `admin123`       | `dbOwner`              | Supervisa y gestiona toda la base de datos, incluyendo creación y eliminación de datos.| Acceso total (CRUD en todas las colecciones)              |
+| `medico`       | `medico123`      | `medicoRole`           | Gestiona historiales clínicos, tratamientos y visitas médicas.                         | Lectura y escritura en historiales, visitas y tratamientos|
+| `enfermero`    | `enfermero123`   | `enfermeroRole`        | Apoya en administración de medicamentos y tratamientos asignados.                     | Lectura clínica y escritura en tratamientos asignados     |
+| `mantenimiento`| `mantenimiento123`| `mantenimientoRole`   | Consulta aspectos operativos del hospital, sin acceso a información clínica.           | Solo lectura en hospitales y áreas especializadas          |
+| `director`     | `director123`    | `read`                 | Visualiza datos de todo el sistema para control y toma de decisiones.                  | Lectura global en todas las colecciones                   |
+
+<br><br>
+
+
+### Explicacion a fondo
+
+Cada usuario cuenta con un nombre de acceso (usuario) y una contraseña (password), además de un campo de rol que define su función dentro del hospital. Esto nos permite simular situaciones como registros médicos, asignación de tratamientos, consultas administrativas o gestión operativa, según el perfil con el que iniciemos.
+
+En el desarrollo, podemos referenciar estos usuarios para controlar qué colecciones deben estar visibles o modificables, dependiendo del rol activo. Por ejemplo, desde el perfil del médico se pueden consultar historiales clínicos, pero no se deberían modificar los estados financieros del paciente.
+
+
+### 🛠️ Ejemplo de uso en pruebas
+
+Si queremos simular que un médico registra una visita médica, iniciamos sesión con:
+
+- Usuario: medico
+
+- Contraseña: medico123
+  
+
+Para registrar una factura o revisar pagos, usamos:
+
+- Usuario: admin
+
+- Contraseña: admin123
+  
+
+En pruebas de control de tratamientos desde enfermería:
+
+- Usuario: enfermero
+
+- Contraseña: enfermero123
+
+<br> <br>
+
+Esto nos permite acceder con los permisos correspondientes. Por ejemplo:
+
+Si ingresamos como mantenimiento, solo podremos realizar operaciones de lectura.
+
+Si ingresamos como admin, tendremos acceso completo para leer y modificar cualquier colección.
+
+
+
+<br> <br>
 
 # 🔗 Referencias
 
