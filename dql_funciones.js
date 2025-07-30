@@ -33,15 +33,23 @@ function buscarPacientePorHistoriaClinica(numeroHistoria) {
 
 
 
-//  4. Listar pacientes con un tipo específico de seguro
+//  4. Listar Pacientes por tipo de seguro
 
 // Devuelve pacientes que tienen un tipo particular de seguro médico
 
 ```js
 function pacientesPorTipoSeguro(idTipoSeguro) {
   return db.pacientes.aggregate([
-    { $lookup: { from: "segurosMedicos", localField: "idSeguro", foreignField: "_id", as: "seguro" } },
-    { $match: { "seguro.idTipoSeguro": idTipoSeguro } }
+    {
+      $lookup: {
+        from: "segurosMedicos",
+        localField: "idSeguro",
+        foreignField: "_id",
+        as: "seguro"
+      }
+    },
+    { $unwind: "$seguro" },
+    { $match: { "seguro.idTipoSeguro": idTipoSeguro.toString() } }
   ]).toArray();
 }
 ```
@@ -80,15 +88,22 @@ function medicamentosBajoInventario(nivelMinimo) {
 
 
 
-//  8. Buscar reacciones adversas por medicamento
+//  8. Buscar Reacciones por medicamento
 
 // Lista las posibles reacciones adversas de un medicamento específico
 
 ```js
 function reaccionesPorMedicamento(idMedicamento) {
-  return db.medicamentosReaccionAdversa.aggregate([
-    { $match: { _id: idMedicamento } },
-    { $lookup: { from: "reaccionesAdversas", localField: "idReacciones", foreignField: "_id", as: "reacciones" } }
+  return db.medicamentos.aggregate([
+    { $match: { _id: parseInt(idMedicamento) } },
+    {
+      $lookup: {
+        from: "reaccionesAdversas",
+        localField: "idReaccionAdversa",
+        foreignField: "_id",
+        as: "reacciones"
+      }
+    }
   ]).toArray();
 }
 ```
@@ -114,11 +129,17 @@ function personalPorEspecialidadYHospital(idEspecialidad, idHospital) {
 
 ```js
 function citasPendientesPaciente(idPaciente) {
+  // Obtener la fecha actual sin horas/minutos/segundos
   const hoy = new Date();
-  return db.citas.find({ 
-    idPaciente: idPaciente, 
-    fecha: { $gte: hoy } 
-  }).sort({ fecha: 1 }).toArray();
+  hoy.setHours(0, 0, 0, 0);
+  
+  // Buscar citas del paciente con fecha igual o posterior a hoy
+  const citas = db.citas.find({
+    idPaciente: idPaciente,
+    fecha: { $gte: hoy }
+  }).toArray();
+  
+  return citas;
 }
 ```
 
@@ -204,16 +225,34 @@ function medicamentosPorFabricante(idFabricante) {
 ```
 
 
-//  17. Obtener facturas pendientes de pago
+//  17. Obtener Facturas pendientes
 
 // Devuelve facturas que no han sido pagadas completamente
 
 ```js
-function facturasPendientes() {
+function facturasPendientesBasica() {
   return db.facturas.aggregate([
-    { $lookup: { from: "pagos", localField: "_id", foreignField: "idFactura", as: "pagos" } },
-    { $addFields: { totalPagado: { $sum: "$pagos.monto" } } },
-    { $match: { $expr: { $lt: ["$totalPagado", "$total"] } } }
+    {
+      $lookup: {
+        from: "pagos",
+        localField: "_id",
+        foreignField: "idFactura",
+        as: "pagosAsociados"
+      }
+    },
+    {
+      $addFields: {
+        totalPagado: { $sum: "$pagosAsociados.monto" }
+      }
+    },
+    {
+      $match: {
+        $or: [
+          { totalPagado: { $exists: false } },
+          { totalPagado: { $lt: 100 } } // Asumiendo un valor fijo temporal
+        ]
+      }
+    }
   ]).toArray();
 }
 ```
@@ -241,25 +280,82 @@ function personalPorRolYHospital(idRol, idHospital) {
 
 
 ```js
-function estadisticasTratamientosPorArea() {
+function conteoTratamientosPorArea() {
   return db.tratamientos.aggregate([
-    { $group: { _id: "$idArea", total: { $sum: 1 } } },
-    { $lookup: { from: "areasEspecializadas", localField: "_id", foreignField: "_id", as: "area" } },
-    { $unwind: "$area" },
-    { $project: { "area.nombre": 1, total: 1 } }
+    {
+      $group: {
+        _id: "$idArea",
+        cantidadTratamientos: { $sum: 1 },
+        costoTotal: { $sum: "$costo" }
+      }
+    },
+    {
+      $sort: { cantidadTratamientos: -1 }
+    }
   ]).toArray();
 }
 ```
 
 
-//  20. Buscar pacientes con reacciones adversas específicas (versión simplificada)
+//  20. Buscar Citas por médico
 
-// Devuelve pacientes que han tenido reacciones adversas específicas usando una estructura más simple
+// Devuelve Citas por médico específicas usando una estructura más simple
 
 ```js
-function pacientesConReaccionesAdversas(idReaccion) {
-  return db.pacientes.find({ 
-    'medicamentos.idReaccionAdversa': idReaccion 
-  }).toArray();
+function citasPorMedico(idPersonal) {
+  return db.citas.aggregate([
+    // Filtra por el médico y convierte el ID a número
+    { 
+      $match: { 
+        idPersonal: parseInt(idPersonal) 
+      } 
+    },
+    // Ordena por fecha ascendente (las más antiguas primero)
+    { $sort: { fecha: 1 } },
+    // Obtiene información del médico
+    {
+      $lookup: {
+        from: "personal",
+        localField: "idPersonal",
+        foreignField: "_id",
+        as: "medico"
+      }
+    },
+    { $unwind: "$medico" },
+    // Obtiene información del paciente
+    {
+      $lookup: {
+        from: "pacientes",
+        localField: "idPaciente",
+        foreignField: "_id",
+        as: "paciente"
+      }
+    },
+    { $unwind: "$paciente" },
+    // Obtiene información del hospital
+    {
+      $lookup: {
+        from: "hospitales",
+        localField: "idHospital",
+        foreignField: "_id",
+        as: "hospital"
+      }
+    },
+    { $unwind: "$hospital" },
+    // Proyecta solo los campos relevantes
+    {
+      $project: {
+        _id: 1,
+        fecha: 1,
+        hora: 1,
+        motivo: 1,
+        estado: 1,
+        "medico.nombre": 1,
+        "paciente.nombre": 1,
+        "paciente.numeroHistoriaClinica": 1,
+        "hospital.nombre": 1
+      }
+    }
+  ]).toArray();
 }
 ```
