@@ -24,6 +24,8 @@ Aquí se encuentra la sustentación del proyecto **Sistema Hospitalario** desarr
 <br>
 <br>
 <br>
+<br>
+<br>
 
 
 <div align="center">
